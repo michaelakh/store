@@ -1,6 +1,20 @@
 class DeviseCreateUsers < ActiveRecord::Migration[5.1]
   def change
     create_table :users do |t|
+      
+      # First name / Last name
+      t.string :first_name
+      t.string :last_name
+      
+      # Location Columns
+      t.string :country
+      t.string :postcode
+      t.string :street_ad
+      t.string :town_city
+      t.string :phone_no
+      t.string :county
+      
+      ## Devise
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -29,7 +43,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-
+      
+      # Stripe Columns
       t.string :stripe_id
       t.string :stripe_subscription_id
       t.string :card_brand

@@ -63,6 +63,14 @@ ActiveRecord::Schema.define(version: 20180213124858) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "country"
+    t.string "postcode"
+    t.string "street_ad"
+    t.string "town_city"
+    t.string "phone_no"
+    t.string "county"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

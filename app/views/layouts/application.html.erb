@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Store</title>
+    <title><%= @title == nil ? 'Nucifera' : @title %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,18 +10,18 @@
   </head>
 
   <body>
-    <%= render 'layouts/nav'%>
-    <div class='container'>
-      
-    <% flash.each do |key,value|%>
-    <div class="alert <%= flash_class(key) %>">
-      <%= value %>
+    <%= render 'layouts/header'%>
+    <div class='blue-gradient'>
+      <div class='container'>
+        <% flash.each do |key,value|%>
+        <div class="alert <%= flash_class(key) %>">
+          <%= value %>
+        </div>
+        <% end %>
+
+        <%= yield %>
+      </div>
+      <%= render 'layouts/footer'%>
     </div>
-    <% end %>
-      
-    <%= yield %>
-      
-    </div>
-    <%= render 'layouts/footer'%>
   </body>
 </html>
