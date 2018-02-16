@@ -8,10 +8,10 @@ class User < ApplicationRecord
   has_many :products, through: :orders
   
   #Sign up Validations
-  validates_presence_of :first_name
-  validates_presence_of :last_name
-  validates_presence_of :email
-  validates_uniqueness_of :email
+  #validates_presence_of :first_name
+  #validates_presence_of :last_name
+  #validates_presence_of :email
+  #validates_uniqueness_of :email
   
   #Payment Validation
   validates_presence_of :country, on: :create_customer
