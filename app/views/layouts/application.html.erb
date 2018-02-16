@@ -11,6 +11,9 @@
 
   <body>
     <%= render 'layouts/header'%>
+    <% if current_page?(skin_care_path)|| current_page?(root_path)%>
+    <%= render 'layouts/carousel'%>
+    <% end %>
     <div class='blue-gradient'>
       <div class='container'>
         <% flash.each do |key,value|%>

@@ -1,10 +1,33 @@
   <header>
     <div class='container'>
-      <div class='top-header'>
-        <p>Your Online Resource For Natural Skin Therapy</p>
+      <div class='row top-header'>
+        <div class='col-md-12'>
+          <span>
+            Your Online Resource For Natural Skin Therapy
+          </span>
+          <span class='social'>
+            Follow us
+          </span>
+          <div class='social'>
+            <%= render 'layouts/social_media_icons' %>
+          </div>
+        </div>
       </div>
     </div>
     <div class='container'>
+      <div class='row'>
+        <div class='col-md-5'>
+          <%= link_to (root_path), class: 'brand-image' do %>
+            <%= image_tag('logo.png', size: "150x60", style:'margin-top:0px;') %>
+          <% end %>
+        </div>
+        <div class='col-md-7'>
+          <div class='mailing-box pull-right'>
+            Mailing list
+          </div>
+        </div>
+        
+      </div>
     <!-- Static navbar -->
       <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -15,14 +38,30 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-          <%= link_to "Nucifera", products_path, class: 'navbar-brand' %>
+          
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><%= link_to "PRODUCTS", products_path %></li>
-              <li class=""><%= link_to "SKIN CARE", products_path %></li>
-              <li class=""><%= link_to "CONTACT", products_path %></li>
-              <li class=""><%= link_to "ABOUT", products_path %></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">SKIN CARE
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li class="<%=active?(skin_care_eczema_path)%>"><%= link_to "ECZEMA", skin_care_eczema_path %></li>
+                  <li class="<%=active?(skin_care_itchy_skin_path)%>"><%= link_to "ITCHY SKIN", skin_care_itchy_skin_path %></li>
+                  <li class="<%=active?(skin_care_dry_skin_path)%>"><%= link_to "DRY SKIN", skin_care_dry_skin_path %></li>
+                  <li class="<%=active?(skin_care_bruises_path)%>"><%= link_to "BRUISES", skin_care_bruises_path %></li>
+                  <li class="<%=active?(skin_care_cradle_cap_path)%>"><%= link_to "CRADLE CAP", skin_care_cradle_cap_path %></li>
+                </ul>
+              </li>
+              <li class="<%=active?(products_path)%>"><%= link_to "PRODUCTS", products_path %></li>
+              <li class="<%=active?(contact_path)%>"><%= link_to "CONTACT", contact_path %></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">ABOUT
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li class="<%=active?(about_path)%>"><%= link_to "ABOUT", about_path %></li>
+                  <li class="<%=active?(about_nucifera_path)%>"><%= link_to "NUCIFERA", about_nucifera_path %></li>
+                </ul>
             </ul>
             
             <ul class="nav navbar-nav navbar-right">
@@ -38,55 +77,6 @@
         </div><!--/.container-fluid -->
       </nav>
     </div>
-     <!-- Carousel
-    ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" >
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <%= image_tag('1510296761.e33b995856edcce259b819b2f0e8911d.jpg', class:'first-slide carousel',alt:'First slide carousel')%>
-           <div class="container">
-            <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <%= image_tag('1510296761.e33b995856edcce259b819b2f0e8911d.jpg', class:'second-slide carousel',alt:'Second slide')%>
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <%= image_tag('1510296761.e33b995856edcce259b819b2f0e8911d.jpg', class:'third-slide carousel',alt:'Third slide carousel')%>
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div><!-- /.carousel -->
+
     
   </header>

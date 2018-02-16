@@ -1,0 +1,148 @@
+<section class='section'>
+  <div class='container'>
+      <div class="container marketing">
+
+        <div class="row info-box-container">
+          <div class="col-md-4 ibi-container">
+            <%= link_to(products_path) do%>
+            <%= image_tag('nucifera500x500.jpg', class:'img-circle ibi-1', alt:'nucifera')%>
+            <% end %>
+          </div>
+          <div class="col-md-8 info-box">
+            <h2>Nucifera<sup>®</sup></h2>
+            <p>
+              nucifera is a natural emollient that nourishes, repairs and protects your skin. It uses a precise combination of 2 ingredients. Centrifuged Coconut Oil from Sri Lanka which is the purest and highest quality of coconut oil in the world, and beeswax. 
+            </p>
+            <h3> 
+              <em>How It works</em> 
+            </h3>
+            <div class='row'>
+              <%= image_tag('coconut.jpg', class:'img-circle col-md-3 col-xs-3', alt:'nucifera', size:'100')%>
+              <p class='col-md-9 col-xs-9'>
+              The coconut oil is rich in natural fatty acids which are small molecules that can penetrate into the skin and provide essential nutrients that the skin needs to be healthy and youthfull.
+              </p>
+            </div>
+            <div class='row'>
+              <%= image_tag('beeswax.jpg', class:'img-circle col-md-3 col-xs-3', alt:'nucifera', size:'100')%>
+              <p class='col-md-9 col-xs-9'>
+              The Beeswax softens your skin and creates a long-lasting protective coating on your skin which locks the coconut oil into your skin and protects your skin from the environment
+              </p>
+            </div>
+            <p class='center'>
+              <%= link_to('Learn More', products_path, class:'btn btn-default right', role:'button')%>
+            </p>
+          </div>
+        </div><!-- /.row -->
+        
+        
+      <h1 class='header center border-top'>
+        <span>
+          Nucifera Can Help With
+        </span>
+      </h1> 
+      
+      <!-- Skin Care Features -->
+      <div class='row center'> 
+      
+      <%= link_to(skin_care_eczema_path) do %>
+        <div class='col-md-4 col-sm-6 social-box'>
+          <div class='box border'>
+            <h3 class='center social-header'>
+              Eczema
+            </h3>
+            <%= image_tag('baby-eczema.jpg',class:'img-box', alt:'Eczema', size:'300')%>
+            <p>
+              Short info About Eczema
+            </p>
+            <%= link_to('Learn More', skin_care_eczema_path, class:'btn btn-default right', role:'button')%>
+          </div>
+        </div>
+      <% end %>
+        
+      <%= link_to(skin_care_itchy_skin_path) do %>
+        <div class='col-md-4 col-sm-6 social-box'>
+          <div class='box border'>
+            <h3 class='center social-header'>
+              Itchy Skin
+            </h3>
+            <%= image_tag('Itchy-Skin.jpg',class:'img-box', alt:'Itchy Skin', size:'300')%>
+            <p>
+              Short info About Itchy Skin
+            </p>
+            <%= link_to('Learn More', skin_care_itchy_skin_path, class:'btn btn-default right', role:'button')%>
+          </div>
+        </div>
+      <% end %>
+      
+      <%= link_to(skin_care_dry_skin_path) do %>
+        <div class='col-md-4 col-sm-6 social-box'>
+          <div class='box border'>
+            <h3 class='center social-header'>
+              Dry Skin
+            </h3>
+            <%= image_tag('dry-skin.jpg',class:'img-box', alt:'Dry Skin', size:'300')%>
+            <p>
+              Short info About Dry Skin
+            </p>
+            <%= link_to('Learn More', skin_care_dry_skin_path, class:'btn btn-default right', role:'button')%>
+          </div>
+        </div>
+      <% end %>
+        
+     <div class="w-100">
+     </div> 
+      
+      <%= link_to(skin_care_bruises_path) do %>
+        <div class='col-md-4 col-sm-6 social-box'>
+          <div class='box border'>
+            <h3 class='center social-header'>
+              Bruises
+            </h3>
+            <%= image_tag('bruises-face.jpg',class:'img-box', alt:'Bruises', size:'300')%>
+            <p>
+              Short info about Bruises
+            </p>
+            <%= link_to('Learn More', skin_care_bruises_path, class:'btn btn-default right', role:'button')%>
+          </div>
+        </div>
+      <% end %>
+        
+      <%= link_to(skin_care_cradle_cap_path) do %>
+        <div class='col-md-4 col-sm-6 social-box'>
+          <div class='box border'>
+            <h3 class='center social-header'>
+              Cradle Cap
+            </h3>
+            <%= image_tag('cradle-cap.jpg',class:'img-box', alt:'Cradle Cap', size:'300')%>
+            <p>
+              Learn more about Cradle Cap
+            </p>
+            <%= link_to('Learn More', skin_care_cradle_cap_path, class:'btn btn-default right', role:'button')%>
+          </div>
+        </div>
+      <% end %>
+        <div class='col-md-4 col-sm-6 social-box'>
+        </div>
+    </div>
+        
+  <div class='row border-top '>
+    <h3 class='center'>Social Media</h3>  
+    <div class='col-md-4 col-sm-6 social-box'>
+      <div class='box border'>
+        <h3 class='center social-header'>Facebook Posts</h3>
+      </div>
+    </div>
+    <div class='col-md-4 col-sm-6 social-box'>
+      <div class='box border'>
+        <h3 class='center social-header'>Instagram Photos</h3>
+      </div>
+    </div>
+    <div class='col-md-4 col-sm-12 social-box'>
+      <div class='box border'>
+        <h3 class='center social-header'>Recent Tweets</h3>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</section>

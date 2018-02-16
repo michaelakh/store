@@ -1,5 +1,14 @@
-<h1>New Product</h1>
+<div class="row featurette">
+  <div class="col-md-5">
+    <%= image_tag('Contact_us.jpg', "data-src":'holder.js/500x500/auto', alt:"Contact Us", class:"featurette-image img-responsive center-block")%>
+  </div>
+  <div class="col-md-7 info-box">
+    <h1>Contact Us</h1>
+    <p>HOW CAN WE HELP YOU?
+      Call us at 0208888888 or please enter your email bellow. We want to make sure you get your questions answered quickly.</p>
+    <%= render 'form' %>
+  </div>
 
-<%= render 'form' %>
+</div>
 
-<%= link_to 'Back', products_path %>
+<hr class="featurette-divider">

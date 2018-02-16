@@ -1,0 +1,2 @@
+module SkinCareHelper
+end

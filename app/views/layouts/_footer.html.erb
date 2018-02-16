@@ -1,12 +1,15 @@
 <footer class="footer fixed-bottom">
   <div class='container'>
-    <div class='row'>
+    <li>
+      <%= link_to "Nucifera ©", root_path, class: "footer-brand" %> |
+      <%= link_to "Privacy Policy", legal_privacy_policy_path, class: "footer-brand" %> |
+      <%= link_to "Terms and Conditions", legal_terms_path, class: "footer-brand" %> |
+      <%= link_to "Contact", contact_path, class: "footer-brand" %> |
+      <%= link_to "About", contact_path, class: "footer-brand" %> 
+    </li>    
         
-        <div class='col-sm-4 footer-list'>
-            <%= link_to "Nucifera ©", root_path, class: "footer-brand text-muted" %>
-        </div>
-        
-        
-    </div>
+    
+
+    <%= render 'layouts/social_media_icons' %>
   </div>
 </footer>

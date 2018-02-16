@@ -1,12 +1,140 @@
 
 $f-color : #fff;
-$font : 'sans-serif';
+$font : 'ProximaNova,Noto Sans KR,"Helvetica Neue",Helvetica,Roboto,Arial,ヒラギノ角ゴ Pro W3,Hiragino Kaku Gothic Pro,Osaka,メイリオ,Meiryo,ＭＳ Ｐゴシック,MS PGothic,sans-serif';
+
+
+
+// Main Foundation
+
+body {
+  font-family: $font;
+  line-height:1.5;
+}
+
+.blue-gradient {
+  background:#69AFF3;
+  background: linear-gradient(to bottom,#69AFF3, #FFFFFF);
+  height:450px;
+}
+
+.center {
+  text-align:center;
+}
+
+.header {
+  padding:10px;
+}
+
+.header span {
+  display:inline-block;
+  padding:10px;
+  background-color: white;
+  border-bottom: groove 2px #DDD;
+  font-weight:bold;
+  border-radius:2em;
+  font-size:0.8em;
+}
+
+// bootstrap custom styling
+.btn {
+  transition:0.2s;
+}
+
+.btn:hover {
+  transition:0.2s;
+}
+
+.img-box {
+  width:100%;
+  max-width:700px;
+  margin-bottom: 20px;
+  margin:10px auto;
+}
+
+// devise forms
+
+  form.new_user {
+    max-width:400px;
+    width:100%;
+  }
+  
+  .container.login {
+    background-color:white;
+    border: outset 2px #999;
+    max-width:400px;
+    width:100%;
+    margin: 10px auto;
+  }
+
+// header styles
+
+.top-header {
+  background-color:#000026;
+  color:white;
+  position:relative;
+}
+
+.top-header p{
+  margin:10px;
+}
+.top-header span {
+  display:inline-block;
+  margin:10px 0px;
+}
+
+.top-header span.social {
+  position:absolute;
+  right:110px;
+}
+
+.top-header div.social {
+  display:inline-block;
+  margin:0px;
+  position:absolute;
+  top:5px;
+  right:10px;
+  
+}
+
+.top-header .mailing-box {
+  
+}
+
+@media (max-width: 576px) { 
+    .top-header span.social {
+    position:absolute;
+    right:110px;
+    top: 35px;
+  }
+
+  .top-header div.social {
+    display:inline-block;
+    margin:0px;
+    position:absolute;
+    top:40px;
+    right:10px;
+
+  }
+  .top-header {
+    height:80px;
+  }
+  .mailing-box {
+    display:none;
+  }
+}
+
+div.social-m-icons {
+  display:inline-block;
+}
+
+// footer styles
 
 .footer {
     position: relative;
     width: 100%;
     background-color: #525D7D;
     padding: 10px;
+    box-shadow: 0px -3px 5px;
 }
 
 h1.footer-header {
@@ -16,19 +144,134 @@ h1.footer-header {
     font-family: $font;
 }
 
-footer .footer-list {
+footer li {
     margin-bottom: 20px; 
     text-align:center;
 }
 
-footer ul li a{
+footer li a{
     color: $f-color;
     
     &:hover {
-        text-decoration:none;
+      text-decoration:none;
+      color:blue;
     }
 }
+footer li {
+  list-style-type: none;
+}
 
+// Footer social media Icons
+
+Footer div.social-m-icons {
+    font-family: $font;
+    padding-right:10px;
+    padding-top:0.5em;
+    padding-bottom:0.5em;
+    margin-bottom:0.5em;
+    color:white;
+    width:100%;
+    text-align:center;
+}
+
+Footer div.social-m-icons svg{
+    position:relative;
+    height:3em;
+    width:3em;
+    z-index:1;
+    padding-left:0.5em;
+}
+
+svg.twitter-icon{
+
+    }
+    div.twitter-icon{
+        display:inline-block;
+    }
+    .twitter-background{
+        transition: fill 0.1s;
+    }
+    .twitter-icon{
+        transition: fill 0.2s;
+    }
+    div.twitter-icon:hover .twitter-background{
+        fill:#14B9E7;
+    }
+    div.twitter-icon:hover path.twitter-icon{
+        fill:white;
+    }
+
+svg.facebook-icon{
+
+    }
+    div.facebook-icon{
+        display:inline-block;
+    }
+    .facebook-background{
+        transition: fill 0.1s;
+    }
+    .facebook-icon{
+        transition: fill 0.2s;
+    }
+    div.facebook-icon:hover .facebook-background{
+        fill:#2148DE;
+    }
+    div.facebook-icon:hover path.facebook-icon{
+        fill:white;
+    }
+
+svg.instagram-icon{
+
+    }
+    div.instagram-icon{
+        display:inline-block;
+    }
+    .instagram-background{
+        transition: fill 0.1s;
+    }
+    .instagram-icon{
+        transition: fill 0.2s;
+    }
+    .instagram-icon-stroke{
+        transition: stroke 0.2s;
+    }
+    div.instagram-icon:hover .instagram-background{
+        fill:#7248E4;
+    }
+    div.instagram-icon:hover path.instagram-icon{
+        fill:white;
+    }
+    div.instagram-icon:hover path.instagram-icon-stroke{
+        stroke:white;
+    }
+
+svg.snapchat-icon{
+
+    }
+    div.snapchat-icon{
+        display:inline-block;
+    }
+    .snapchat-background{
+        transition: fill 0.1s;
+    }
+    .snapchat-icon{
+        transition: fill 0.2s;
+    }
+    .snapchat-icon-stroke{
+        transition: stroke 0.2s;
+    }
+    div.snapchat-icon:hover .snapchat-background{
+        fill:#FFFC01;
+    }
+    div.snapchat-icon:hover path.snapchat-icon{
+        fill:white;
+    }
+    div.snapchat-icon:hover path.snapchat-icon-stroke{
+        stroke:black;
+    }
+
+
+// General forms
 .form-h {
   color:#fff;
   text-align:center;
@@ -71,17 +314,205 @@ div.actions .shorten-button {
 .url {
 
 }
-.blue-gradient {
-  background:#69AFF3;
-  background: linear-gradient(to bottom,#69AFF3, #FFFFFF);
-}
+
+
+// Header/Nav/Carousel
 
 nav.navbar.navbar-default {
   margin-bottom:0px;
 }
 
+// Carousel 
 .carousel.slide img.carousel {
   height:400px;
   width: 100vw;
   object-fit:cover;
 }
+
+a.navbar-brand {
+ padding:5px; 
+}
+
+.container.bg {
+  max-width: 500px;
+  border-radius:20px;
+  background-color:rgba(255,255,255,0.2);
+  color:black;
+  font-weight:bold;
+}
+
+// Welcome Css
+.container.review {
+  
+  
+}
+
+span.tick-box {
+  display:inline-block;
+  max-width:40px;
+  margin:10px;
+}
+span.tick-box-content {
+  display:inline-block;
+  max-width:200px;
+}
+
+
+
+.container.review li {
+  list-style-type:none;
+}
+
+
+  
+  .info-box-container {
+    margin-top:30px;
+  }
+  
+  .info-box {
+    border-style: groove;
+    border-width: 7px;
+    border-color: white;
+    background-color: #FFF;
+    margin-top:30px;
+  }
+  
+  .info-box p {
+    font-family:$font;
+    font-size:1.2em;
+  }
+  
+  .info-box h3 {
+    margin-top:0px;
+  }
+  
+  .info-box a{
+    font-size: 1.2em;
+  }
+
+  .info-box-primary {
+    box-shadow: 3px 3px 25px #DDD;
+    border: solid 1px #AAA;
+    background-color:white;
+    padding:10px;
+    margin-top:10px;
+  }
+
+  .info-box-primary h2 {
+    margin-top:0px;
+  }
+  
+  .ibi-container {
+    text-align:center;
+  }
+  
+  .ibi-1 {
+    max-width:400px;
+    width:100%;
+  }
+  
+  .ibi-2 {
+    width: 100px;
+    height:100px;
+  }
+  
+  .border-top {
+    border-top:solid 1px #222;
+  }
+  
+  .border {
+    border:groove 4px #DDD;
+    transition:0.2s;
+  }
+  .border:hover {
+    box-shadow: 0 0 25px #AAA, 0 0 5px #DDD;
+    transition:0.2s;
+  }
+  
+  .box {
+    margin:10px;
+    min-height:400px;
+    margin:0 auto;
+    max-width: 400px;
+  }
+
+  .img-box {
+    
+  }
+  
+  .social-box{
+    margin-bottom:20px;
+  }
+  
+  .social-header {
+    margin-top:5px;
+  }
+  
+
+
+
+// Unused Overlay Thumbnail CSS
+ .thumb {
+    display:inline-block;
+    height:360px;
+    width:290px;
+    margin:10px;
+    border: groove 1px #337ab7;
+    box-shadow:2px 2px 4px #000;
+    position:relative;
+  }
+  
+  .thumb p {
+    position: absolute;
+    bottom:0px;
+    right:0px;
+  }
+  
+  a.overlay-m {
+    
+  }
+  
+  a.overlay-m:hover div.overlay-m-3-l{
+        visibility:visible;
+        opacity: 0.2;
+  }
+  
+  div.overlay-m-3-l {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: #FFF;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+  }
+  
+  div.overlay-m-3 {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 300px;
+    width: 180px;
+    text-align: center;
+    text-shadow: 1px 1px 3px black;
+    background-color: rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.5) 20%);
+    color: white;
+    font-family: $font;
+  }
+  
+  div.cust-image-container {
+    height: 200px;
+    width: 200px;
+  }
+  
+  img.cust-img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
