@@ -51,6 +51,57 @@ body {
   margin:10px auto;
 }
 
+// Custom bootstrap media queries 
+//xs
+@media(max-width:767px){
+  .xs-left {
+    text-align:left;
+  }
+  .xs-right {
+    text-align:right;
+  }
+  .xs-center {
+    text-align:center;
+  }
+}
+
+//sm
+@media(min-width:768px) and (max-width:991px) {
+  .sm-left {
+    text-align:left;
+  }
+  .sm-right {
+    text-align:right;
+  }
+  .sm-center {
+    text-align:center;
+  }
+}
+//md
+@media(min-width:992px) and (max-width:1200px) {
+  .md-left {
+    text-align:left;
+  }
+  .md-right {
+    text-align:right;
+  }
+  .md-center {
+    text-align:center;
+  }
+}
+//lg
+@media(min-width:1200px) {
+  .lg-left {
+    text-align:left;
+  }
+  .lg-right {
+    text-align:right;
+  }
+  .lg-center {
+    text-align:center;
+  }
+}
+
 // devise forms
 
   form.new_user {
@@ -121,7 +172,10 @@ body {
   .mailing-box {
     display:none;
   }
+  
 }
+
+
 
 div.social-m-icons {
   display:inline-block;
@@ -440,9 +494,18 @@ span.tick-box-content {
     
   }
   
-  .social-box{
+  .social-box {
     margin-bottom:20px;
   }
+
+.col-md-4.col-sm-6.social-box, .col-md-4.col-sm-12.social-box {
+  min-width:350px;
+  
+  @media(max-width:767px){
+  padding:0px;
+}
+  
+}
   
   .social-header {
     margin-top:5px;
