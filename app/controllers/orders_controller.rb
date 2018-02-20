@@ -1,4 +1,5 @@
-class SubscriptionsController < ApplicationController
+class OrdersController < ApplicationController
+  
   def new
     
   end
@@ -22,4 +23,8 @@ class SubscriptionsController < ApplicationController
   def destroy
     
   end
+  
+   def order_params
+      params.require(:order).permit(:product_id,:user_id,:qty,:price) 
+    end
 end

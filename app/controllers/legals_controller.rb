@@ -4,4 +4,7 @@ class LegalsController < ApplicationController
   
   def terms
   end
+  
+  def promotions
+  end
 end

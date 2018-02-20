@@ -4,8 +4,8 @@
   <h2 class='center'>
     Sign up
   </h2>
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
     <%= devise_error_messages! %>
     
     <div class="form-group">
@@ -34,11 +34,31 @@
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off", class:'form-control', placeholder:'Re-Enter Password'  %>
     </div>
-
+    <div class='row'>
+      
+      <div class="form-group col-md-6">
+        <%= f.label :avatar %><br />
+        <%= f.file_field :avatar, autocomplete: "off", class:'form-control', id:'imgInp', placeholder:'upload an image'  %>
+      </div>
+      <div class='col-md-6'>
+        <div class='img-box-p'>
+          <img src='' id='image-show' class='form-thumb'>
+          <div class='preview-text'>
+            Image Preview
+          </div>
+        </div>
+        <p class='text-muted center'>
+          <small>images should be 300x300 px</small>
+        </p>
+      </div>
+    </div>
     <div class="actions">
-      <%= f.submit "Sign up" %>
+      <%= f.submit "Sign up", class:'btn-lg btn-primary' %>
     </div>
   <% end %>
-
-  <%= render "devise/shared/links" %>
+  <p class='right'>
+    <%= render "devise/shared/links" %>
+  </p>
+  <%= render 'javascript/profile_image_preview' %>
+  
 </div>

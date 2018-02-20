@@ -1,36 +1,92 @@
+<style>
+  .index-title {
+    font-size:1.2em;
+    padding:0px;
+  }
+  
+  .img-index {
+    max-width:200px;
+    width:100%;
+  }
+  .extra-info {
+    display:block;
+    padding-top:7px;
+  }
+</style>
 <div class='info-box-primary'>
 <h1>Products Under Construction</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Category</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <% if params['p'] == 'add' %>
+  <%= link_to 'New Product', new_product_path %>
+  <% end %>
     <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.description %></td>
-        <td><%= product.price %></td>
-        <td><%= product.category %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class='row'>
+        <div class='col-sm-3 col-xs-4 right xs-center'>
+          <%= image_tag(product.photo.url(:medium), class:'img-thumbnail img-index')%>
+        </div>
+        <div class='col-sm-6 col-xs-8'>
+          <h2 class='index-title'><%= link_to product.name, product %> </h2>
+          <small>
+            by:<%= link_to product.brand, about_nucifera_path %>
+          </small>
+          <div class='rating'>
+            <div class='product-info'>
+              <div class='best-seller-box inline-block'>
+                #1 Best Seller
+                <div class="arrow-left arrow"></div>
+              </div>
+              <div class='inline-block'>
+                <span class='text-muted'>
+                  in
+                </span> 
+                <span>
+                  <%= product.category%>
+                </span>
+              </div>
+            </div>
+            <div class="star-rating inline-block" data-score='4.5' >
+            </div>
+
+            <div class='prices'>
+              <small>Price:<strong class='price-color price'><%= number_to_currency(product.price, :unit => "£") %></strong></small> 
+              <small><em class='line-through bold'><%= number_to_currency(product.rrp, :unit => "£") %></em></small>
+            </div>
+            <div class='delivery'>
+                <small>
+                  Get it by <span class='green-color bold'><%= DateTime.tomorrow.tomorrow.strftime("%A, %d %b")%></span>
+                </small>
+            </div>
+          </div>
+        </div>
+        
+        <div class='col-sm-3 col-xs-8'>
+          <div class='aside-info'>
+            <span class='extra-info'>
+              <strong class='bold'>Eligible for FREE UK Delivery </strong>
+            </span>
+          </div>
+          <div class='aside-info'>
+            <span class='extra-info'>
+              <strong class='bold'>Product features</strong>
+            </span>
+            <small>
+              <%= product.details.split(/\r\n/)[0] %>
+            </small>
+          </div>
+        </div>
+    </div>
+      <hr>
     <% end %>
-  </tbody>
-</table>
 
 <br>
+<script>
+  $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+</script>
 
-<%= link_to 'New Product', new_product_path %>
 
-
-  
 </div>

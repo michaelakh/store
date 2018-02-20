@@ -22,9 +22,15 @@ Rails.application.routes.draw do
   # Legal Pages
   get 'legal/privacy_policy', to: 'legals#privacy'
   get 'legal/terms', to: 'legals#terms'
+  get 'legal/promotions/details', to:'legals#promotions'
   
-  resource :subscription
-  resources :products
+  resource :order
+  resources :products do
+    get 'live', to: 'products#live'
+  end
+  
+  #general Default route... may become depreciated in future releases
+  get ':controller(/:action(/:id))'
   
   root 'skin_care#welcome'
 end

@@ -5,9 +5,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#auto complete with nested forms
+gem 'rails-jquery-autocomplete'
 # bootstrap gems
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
+
+#Paperclip for image uploads
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
 #Api requests
 gem "http"

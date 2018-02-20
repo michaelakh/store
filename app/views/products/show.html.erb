@@ -1,23 +1,277 @@
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+<div class='bg-white'>
+  <div class='row'>
+    <div class='col-md-6 col-sm-6 center'>
+      <%= image_tag(@product.photo.url(:medium), class:'img-box img-thumbnail img-product')%>
+    </div>
+    <div class='col-md-6 col-sm-6'>
+      
+      <h2 class='xs-center xs-title'>
+        <%= @product.name %>
+      </h2>
+      
+      <div class='product-brand'>
+        <small>
+          by <%= @product.brand == nil ? '<em>brand</em>'.html_safe : @product.brand %>
+        </small>
+      </div>
+      
+      <div class="star-rating inline-block" data-score='4.5' >
+      </div>
+      
+      <div class='inline-block'>
+        100 customer reviews 
+      </div>
+      
+      |
+      
+      <div class='inline-block'>
+        10 answered reviews 
+      </div>
+      <div class='product-info'>
+        <div class='best-seller-box inline-block'>
+          #1 Best Seller
+          <div class="arrow-left arrow"></div>
+        </div>
+        <div class='inline-block'>
+          <span class='text-muted'>
+            in
+          </span> 
+          <span>
+            <%= @product.category%>
+          </span>
+        </div>
+      </div>
+      
+      <hr>
+      
+      <div class='prices'>
+        <small>RRP:<em class='line-through'><%= number_to_currency(@product.rrp, :unit => "£") %></em></small>
+      </div>
+      
+      <div class='prices'>
+        <small>Price:<strong class='price-color price'><%= number_to_currency(@product.price, :unit => "£") %></strong></small>
+        <span class='extra-info'>
+          & <strong class='bold'>FREE UK Delivery</strong> on orders dispatched by <%= @product.brand == nil ? '<em>brand</em>'.html_safe : @product.brand %> over £20. 
+        </span>
+      </div>
+      
+      <div class='prices'>
+        <small>
+          You Save: <span class='price-color'><%= number_to_currency((@product.rrp - @product.price), :unit => "£") %> (<%= (((@product.rrp - @product.price) / @product.price) * 100).ceil %>%)</span>
+        </small>
+      </div>
+      
+      <div class='stock'>
+        <%= @product.stock != 0 ? "<strong class='green-color'>In stock.</strong>".html_safe : "<strong class='price-color'>Out Of Stock.</strong>".html_safe %>
+      </div>
+      <div class='buy-box'>
+        <%= form_tag new_order_path, method: "get" do %>
+        <div class='row'>
+          <div class='col-md-12'>
+            <%= label_tag "Qty", 'Qty', class:'inline-block'%>
+            <%= select_tag "Qty", options_for_select((1..10),1), class: ' inline-block' %>
+          </div>
+        </div>
+          <%= hidden_field_tag 'item', @product.id %>
+          <%= submit_tag "Buy Now", class: 'btn btn-primary buy-btn' %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+        <% end %>
+      </div>
+      <div class='product-info'>
+        <strong>Want it delivered by <%= DateTime.tomorrow.tomorrow.strftime("%A, %d %b")%>.?</strong> Order within <span id='demo' class='green-color'></span> and choose One-Day Delivery at checkout. <%= link_to("Details", '#') %>
+      </div>
+      <div class='dispatch-info'>
+        <small>Dispatched from and sold by <%= link_to("Nucifera", about_nucifera_path) %>. </small>
+      </div>
+      <div class='product-info'>
+        <small>Size: <strong><%= @product_info.volume == nil ? 'empty' : "#{@product_info.volume}#{@product_info.volume_units}" %></strong></small>
+      </div>
+      <ul class='product-details'>
+        <%= @product.details.split(/\r\n/).map{|x| "<li>#{x}</li>"}.join.html_safe %>
+      </ul>
+      <%= link_to('See more product details', '#product_details')%>
+    
+      <div class='product_info'>
+        <small>
+          <%= link_to('Report incorrect product information', 'javascript://') %>
+        </small>
+      </div>
+    </div>
+  </div>
+    <hr>
+  <div class='row'>
+      
+    <div class='col-md-12'>
+      <h2 id='product_details' class='small-title bold info-title'>
+        Product Description
+      </h2>
 
-<p>
-  <strong>Secret:</strong>
-  <%= @product.price %>
-</p>
-<p>
-  <strong>Secret:</strong>
-  <%= @product.category %>
-</p>
+      <h3 class='small-text bold indent'>
+          Product Description
+      </h3>
+      <div class='small-text indent'>
+        <p class='indent'>
+          <%= @product.description %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class='row'>
+      <div class='col-md-12'>
+        <h2 class='small-title bold info-title'>
+          Special offers and product promotions
+        </h2>
+        <h3 class='small-text bold indent'>
+            Promotion
+        </h3>
+        <div class='small-text indent'>
+          <small class='indent'>
+            Size: <%= number_to_currency(@product_info.volume, unit: @product_info.volume_units, format: "%n %u") %>
+          </small>
+          <p class='indent'>
+            Get free shipping on this item when you spend £30.00 or more on Qualifying items offered by Nucifera. Enter code EXPRESS3 at checkout. Here's how (<%=link_to("terms and conditions apply", legal_promotions_details_path, target:'_blank')%>)
+            <br>
+          </p>
+        </div>
+     </div>      
+   </div>
 
-<%= link_to "Buy", new_subscription_path, class: 'btn btn-primary' %>
+      <div class='table' id='product-info'>
+       <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">
+              <span class='text-muted'>
+                Technical Details
+              </span>
+            </th>
+            <th scope="col">
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Product Dimensions
+            </td>
+            <td><%= @product_info.product_dimensions%></td>
+          </tr>
+          <tr>
+            <td>
+              Item model number
+            </td>
+            <td><%= @product_info.item_model_number%></td>
+          </tr>
+          <tr>
+            <td>
+              Volume
+            </td>
+            <td><%= @product_info.volume %><%= @product_info.volume_units %></td>
+          </tr>
+          <tr>
+            <td scope="row">
+              Storage Instructions
+            </td>
+            <td><%= @product_info.storage_instructions %></td>
+          </tr>
+           <tr>
+            <td>
+              Country of origin
+             </td>
+            <td><%= @product_info.country_of_origin %></td>
+          </tr>
+           <tr>
+            <td>
+               Country of origin of primary ingredient(s)
+             </td>
+            <td><%= @product_info.primary_ingredient_origin%></td>
+          </tr>
+           <tr>
+            <td>
+              Brand
+             </td>
+            <td><%= @product.brand %></td>
+          </tr>
+           <tr>
+            <td>
+              Format
+             </td>
+            <td><%= @product_info.format %></td>
+          </tr>
+           <tr>
+            <td>
+              Speciality
+             </td>
+            <td><%= @product_info.speciality %></td>
+          </tr>
+           <tr>
+            <td>
+              Certification
+             </td>
+            <td><%= @product_info.certification %></td>
+          </tr>
+           <tr>
+            <td>
+              Caffeine content
+             </td>
+            <td><%= @product_info.caffeine %></td>
+          </tr>
+           <tr>
+            <td>
+              Awards
+             </td>
+            <td><%= @product_info.awards %></td>
+          </tr>
+          <tr>
+            <td>
+              Manufacturer/Producer
+             </td>
+            <td><%= @product_info.manufacturer %></td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Back', products_path %>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+</div>
+
+<script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+  
+// Hours and minute timer from now until the end of the day
+function calculateHMleft(){
+    var x = '';
+    var now = new Date();
+    var endtime = new Date();
+    endtime.setHours(23,59,59,999);
+    var hours = 23-now.getHours();
+    var minutes = 59-now.getMinutes();
+    var seconds = 59-now.getSeconds();
+
+    //format 0 prefixes
+    if(minutes<10) minutes = "0"+minutes;
+    if(seconds<10) seconds = "0"+seconds;
+
+    //display
+    $('#demo').html(hours + " hrs " + minutes + " mins ");
+
+    if (now > endtime) {
+        clearInterval(x);
+        $('#demo').html("EXPIRED");
+    }
+}
+
+calculateHMleft();
+x = setInterval(calculateHMleft, 1000);
+ 
+</script>

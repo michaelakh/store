@@ -10,34 +10,257 @@
       </ul>
     </div>
   <% end %>
-   
-  <div class="form-group">
-    <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control', placeholder: 'Name of Product' %>
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control', placeholder: 'Name of Product' %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="field">
+          <%= f.label 'Product Details' %> <small class='text-muted'>each line is a bullet point</small>
+          <%= f.text_area :details, class: 'form-control text-box', placeholder: 'Short brief point of the product' %>
+        </div>
+      </div>
+      
     </div>
-  </div> 
-  <div class="form-group">
-    <div class="field">
-      <%= f.label :price %>
-      <%= f.text_field :price, class: 'form-control', placeholder: 'Price in GBP' %>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label 'Retail Price' %>
+          <%= f.text_field :rrp, class: 'form-control', placeholder: 'Price in GBP' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :price %>
+          <%= f.text_field :price, class: 'form-control', placeholder: 'Price in GBP' %>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="form-group">
-    <div class="field">
-      <%= f.label :description %>
-      <%= f.text_area :description, class: 'form-control', placeholder: 'Description of the product' %>
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: 'form-control text-box', placeholder: 'Longer description of the product' %>
+        </div>
+      </div>
+    </div>
+    
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :category %>
+          <%= f.select :category, options_for_select({'Skin Care' => 'Skin Care'}, 'Skin Care'), {}, class: 'form-control' %> 
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :stock %>
+          <%= f.text_field :stock, class: 'form-control', placeholder: 'Description of the product' %>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="form-group">
-    <div class="field">
-      <%= f.label :category %>
-      <%= f.text_field :category, class: 'form-control', placeholder: 'Description of the product' %>
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label "Brand" %>
+          <%= f.text_field :brand, class: 'form-control', placeholder: 'e.g. Nucifera' %>
+        </div>
+      </div>
+    </div>
+    <div class='col-md-6'>
     </div>
   </div>
+  <div class='row'>
+    <div class="form-group col-md-6">
+      <%= f.label :photo %><br />
+      <%= f.file_field :photo, autocomplete: "off", class:'form-control', id:'imgInp', placeholder:'upload an image', class: 'form-control' %>
+    </div>
+    <div class='col-md-6'>
+      <div class='img-box-p'>
+        <img src='<%= @product == nil ? '' : @product.photo.url(:medium)%>' id='image-show' class='form-thumb'>
+        <div class='preview-text'>
+          Image Preview
+        </div>
+      </div>
+      <p class='text-muted center'>
+        <small>
+          images should be 300x300 px
+        </small>
+      </p>
+    </div>
+  </div>
+
+  <%= f.fields_for :product_infos do |field| %>
+    <div class='row'>
+      <div class='col-md-6'>
+
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label "Dimensions" %> <small class='text-muted'>in cm</small>
+              <%= field.text_field :product_dimensions, class: 'form-control', placeholder: 'e.g. 10x10x10' %>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label "Item Model Number" %>
+              <%= field.text_field :item_model_number, class: 'form-control', placeholder: 'e.g. 129993221' %>
+
+          </div>
+        </div>
+      </div>
+      <div class='col-md-6'>
+
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label :volume %>  <small class='text-muted'>see bellow for units</small>
+              <%= field.text_field :volume, class: 'form-control', placeholder: 'e.g. 350' %> 
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label :volume_units %>
+              <%= field.text_field :volume_units, class: 'form-control', placeholder: "e.g. ml" %>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label :storage_instructions %>
+              <%= field.text_field :storage_instructions, class: 'form-control', placeholder: "e.g. Store in a cool dry place, Store below 25°C." %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='row'>
+
+      <div class='col-md-6'>
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label :country_of_origin %>  
+              <%= field.text_field :country_of_origin, class: 'form-control', placeholder: 'e.g. Sri Lanka' %> 
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label :primary_ingredient_origin %> <small class='text-muted'>Country</small>
+              <%= field.text_field :primary_ingredient_origin, class: 'form-control', placeholder: "e.g. Sri Lanka" %>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label :format %>
+              <%= field.text_field :format, class: 'form-control', placeholder: "e.g. Emollient" %>
+
+          </div>
+        </div>
+      </div>
+
+      <div class='col-md-6'>
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label :speciality %>  
+              <%= field.text_field :speciality, class: 'form-control', placeholder: 'e.g. Natural Skin Care' %> 
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label :certification %> <small class='text-muted'>Any Certification</small>
+              <%= field.text_field :certification, class: 'form-control', placeholder: "e.g. GPHC" %>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label :caffeine %>  
+              <%= field.text_field :caffeine, class: 'form-control', placeholder: 'e.g. Organic' %> 
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label :awards %> <small class='text-muted'>Any achievements</small>
+              <%= field.text_field :awards, class: 'form-control', placeholder: "e.g. UK's First All Natural Emollient Award, Quality Skin Care Award" %>
+
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label :manufacturer %>
+              <%= field.text_field :manufacturer, class: 'form-control', placeholder: "e.g. Ozi's Manufacturing" %>
+
+          </div>
+        </div>
+      </div>
+
+      <div class='col-md-6'>
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label :important_info %> <small class='text-muted'>Any Legal Disclaimers we may have</small> 
+              <%= field.text_area :important_info, class: 'form-control text-box', placeholder: 'e.g. Organic' %> 
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="field">
+
+              <%= field.label :manufacturer_info %> <small class='text-muted'>Any info about the manufacturer if needed</small>
+              <%= field.text_field :manufacturer_info, class: 'form-control', placeholder: "e.g. UK's First All Natural Emollient Award, Quality Skin Care Award" %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
   <div class="form-group">
     <div class="actions">
-      <%= f.submit 'Create Product', class: 'btn btn-primary'  %>
+      <%= f.submit 'See Preview', class: 'btn btn-primary'  %>
     </div>
   </div>
+
+<%= render 'javascript/profile_image_preview' %>
+
 <% end %>
