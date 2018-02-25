@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180220193145) do
 
-  # These are extensions that must be enabled in order to support this database
+  # These are extensions that must be enabled in order to support this database 
   enable_extension "plpgsql"
 
   create_table "coupons", force: :cascade do |t|
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20180220193145) do
     t.string "country"
     t.string "postcode"
     t.string "street_ad"
+    t.string "street_ad2"
     t.string "town_city"
     t.string "phone_no"
     t.string "county"

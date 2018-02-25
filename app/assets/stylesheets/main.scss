@@ -21,6 +21,13 @@ body {
   text-align:center;
 }
 
+.margin-center {
+  margin: 0 auto;
+}
+#payment-form {
+  float:none;
+}
+
 .right {
   text-align:right;
 }
@@ -158,6 +165,9 @@ img.img-box.img-product {
 
  /* Custom, iPhone Retina */ 
 @media(max-width : 320px) {
+  .xs-center {
+    text-align:center;
+  }
   h2.xs-title, h3 {
     font-size:1.5em;
     text-align:center;
@@ -166,6 +176,10 @@ img.img-box.img-product {
 
 /* Extra Small Devices, Phones */ 
 @media(min-width:321px) and (max-width : 480px) {
+  .xs-center {
+    text-align:center;
+  }
+  
    h2.xs-title, h3 {
     font-size:1.5em;
     text-align:center;
@@ -487,19 +501,19 @@ svg.snapchat-icon{
         padding-bottom:20px;
         background-color:white;
     }
-    div h2 {
+    div.legal h2 {
         padding:10px 10px 10px 20px;
         margin:0px;
     }
     
-    div p {
+    div.legal p {
         line-height:1.3;
         padding:10px 10px 10px 50px;
         width:90%;
         margin:0px;
     }
     
-    div h1 {
+    div.legal h1 {
         text-align:center;
         padding:30px 10px 30px 20px;
         margin:0 auto;

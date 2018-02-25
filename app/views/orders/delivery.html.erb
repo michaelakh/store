@@ -1,0 +1,130 @@
+
+<div class="container bg-white">
+ 
+<%= @user.inspect %>
+  </div>
+  <div class='row'>
+    <div class='col-md-12'>
+      <%= select_tag :country, options_for_select(country_select_pairs, "United Kingdom"), class: 'form-control' %>
+    </div>
+  </div>
+   
+
+
+      <%= form_with(model: @user, local: true) do |f| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+# First name / Last name
+      t.string :first_name
+      t.string :last_name
+
+   # Location Columns
+      t.string :country
+      t.string :postcode
+      t.string :street_ad
+      t.string :street_ad2
+      t.string :town_city
+      t.string :phone_no
+      t.string :county
+
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, class: 'form-control', placeholder: 'First Name' %>
+        </div>
+      </div>
+    </div>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last Name' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+   <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :street_ad %>
+          <%= f.text_field :street_ad, class: 'form-control', placeholder: 'Street Address' %>
+        </div>
+      </div>
+    </div>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :street_ad2 %>
+          <%= f.text_field :street_ad2, class: 'form-control', placeholder: 'Street Address 2 (optional)' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :postcode %>
+          <%= f.text_field :postcode, class: 'form-control', placeholder: 'Post Code' %>
+        </div>
+      </div>
+    </div>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :country %>
+          <%= f.text_field :country, class: 'form-control', placeholder: 'Country' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: 'form-control text-box', placeholder: 'Longer description of the product' %>
+        </div>
+      </div>
+    </div>
+    
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :category %>
+          <%= f.select :category, options_for_select({'Skin Care' => 'Skin Care'}, 'Skin Care'), {}, class: 'form-control' %> 
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :stock %>
+          <%= f.text_field :stock, class: 'form-control', placeholder: 'Description of the product' %>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="form-group">
+    <div class="actions">
+      <%= f.submit 'See Preview', class: 'btn btn-primary'  %>
+    </div>
+  </div>
+
+<% end %>

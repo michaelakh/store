@@ -10,6 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :country
       t.string :postcode
       t.string :street_ad
+      t.string :street_ad2
       t.string :town_city
       t.string :phone_no
       t.string :county

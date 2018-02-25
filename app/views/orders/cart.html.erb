@@ -1,0 +1,92 @@
+<style>
+  .order-list-items {
+    max-width:700px;
+    margin:0 auto;
+    border:solid 1.5px #ddd;
+    padding:10px;
+    border-radius:1em;
+  }
+  
+  .big-price {
+    font-size:1.2em;
+  }
+  
+  .extra-padding-top {
+    padding-top:15px;
+  }
+  
+  hr.price-divide {
+    margin:3px;
+    background-color:black;
+    height:1px;
+  }
+</style>
+<div class="container bg-white">
+  <h2 class='center'>
+    Your Shopping Basket
+  </h2>
+  <div class='order-list-items'>
+    <%= form_tag address_select_handler_order_path, method: "get" do %>
+      <% session[:cart].each do |x| %>
+        <% product = Product.find(x['item'])%>
+        <div class='row '>
+          <div class='col-sm-3 col-xs-4 right xs-center'>
+            <%= image_tag(product.photo.url(:medium), class:'img-thumbnail img-index')%>
+          </div>
+          <div class='col-sm-6 col-xs-8'>
+            <h2 class='index-title'><%= link_to product.name, product %> </h2>
+            <div class='stock'>
+              <small>
+                <%= product.stock != 0 ? "<strong class='green-color'>In stock.</strong>".html_safe : "<strong class='price-color'>Out Of Stock.</strong>".html_safe %>
+              </small>
+            </div>
+            <div class='Delivery'>
+                  <small class='text-muted'>
+                    Eligible for FREE UK Delivery
+                  </small>
+                </div>
+            <small>
+              by:<%= link_to product.brand, about_nucifera_path %>
+            </small>
+          </div>
+          <div class='col-sm-3 col-xs-8 extra-padding-top'>
+            <div class='aside-info'>
+              <span>
+                Quantity <%= select_tag "product[#{product.id}[qty]]", options_for_select((1..10),x['qty'].to_i), class: 'inline-block', id:"product-#{product.id}", "data-qty":x['qty'] %>
+              </span>
+              <%= hidden_field_tag "product[#{product.id}[item]]", product.id %>
+            </div>
+            <div class='aside-info'>
+              <span>
+                Price <strong class='big-price' id='product-price-<%= product.id %>'><%= number_to_currency(product.price, :unit => "£") %></strong>
+              </span>
+            </div>
+            <hr class='price-divide'>
+            <div class='aside-info'>
+              <span>
+                Sub Total Price <strong class='big-price price-color' id='product-total-price-<%= product.id %>'><%= number_to_currency((product.price * x['qty'].to_i.ceil), :unit => "£") %></strong>
+              </span>
+            </div>
+          </div>
+        </div>
+        <hr>
+      <% end %>
+      <div class='right'>
+        <%= submit_tag "Proceed To Checkout", class: 'btn btn-primary md-right' %>
+      </div>
+     
+    <% end %>
+  </div>
+  
+  <script>
+    $('select').on('change', function() {
+      var qty = $(this).data('qty')
+      var productId = this.id.split("-")[1];
+      var initCalc = $('#product-price-'+productId).html().split("£")[1];
+      $('#product-total-price-'+productId).html("£"+((initCalc*this.value).toFixed(2) ));
+      
+      $(this).data('qty',this.value)
+      
+      console.log( $(this).attr('data-qty'));
+    })
+  </script>

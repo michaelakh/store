@@ -24,7 +24,13 @@ Rails.application.routes.draw do
   get 'legal/terms', to: 'legals#terms'
   get 'legal/promotions/details', to:'legals#promotions'
   
-  resource :order
+  resource :order, :except => [:new] do
+    get 'cart', to: 'orders#cart'
+    get 'address_select/handler', to: 'orders#delivery'
+    get 'dispatch/handler', to: 'orders#dispatch_method'
+    get 'pay/handler', to: 'orders#pay'
+    get 'confirm/handler', to: 'orders#confirm'
+  end
   resources :products do
     get 'live', to: 'products#live'
   end
