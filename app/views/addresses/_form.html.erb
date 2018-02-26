@@ -1,0 +1,95 @@
+<%= form_with(model: address, local: true, url: addresses_order_path(address:address.id)) do |f| %>
+  <% if address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(address.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+      <ul>
+      <% address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :full_name %>
+          <%= f.text_field :full_name, class: 'form-control', placeholder: 'First Name', :required => true %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+   <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label "Address Line 1" %>
+          <%= f.text_field :street_ad, class: 'form-control', placeholder: 'Street Address', :required => true %>
+        </div>
+      </div>
+    </div>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label "Address Line 2 (optional)" %>
+          <%= f.text_field :street_ad2, class: 'form-control', placeholder: 'Street Address 2 (optional)' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :postcode %>
+          <%= f.text_field :postcode, class: 'form-control', placeholder: 'Post Code', :required => true %>
+        </div>
+      </div>
+    </div>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :country %>
+          <%= f.select :country, options_for_select(country_select_pairs, "United Kingdom"),{}, class: 'form-control', :required => true %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :town_city %>
+          <%= f.text_field :town_city, class: 'form-control', placeholder: 'Town or city', :required => true %>
+        </div>
+      </div>
+    </div>
+    
+    <div class='col-md-6'>
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :county %>
+           <%= f.text_field :county, class: 'form-control', placeholder: 'E.g. England', :required => true %> 
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="field">
+          <%= f.label :phone_no %>
+          <%= f.text_field :phone_no, class: 'form-control', placeholder: 'Phone Number' %>
+        </div>
+        <small class='text-muted'> Just incase we need to reach you about your delivery </small>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="form-group">
+    <div class="actions">
+      <%= f.submit 'Deliver to this address', class: 'btn btn-primary'  %>
+    </div>
+  </div>
+
+<% end %>

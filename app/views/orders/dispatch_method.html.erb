@@ -1,0 +1,72 @@
+<div class='container bg-white'>
+  <div class='row'>
+    <div class='col-md-6 center'>
+      <h2 class='center'> 
+        Choose a delivery option 
+      </h2>
+      <%= form_tag process_handler_order_path do %>
+        <div class=''>
+          <%= radio_button_tag 'delivery', 'Standard Delivery', :required => true, :selected => true %> 
+          Standard Delivery 
+          <span class='green-color'>
+            : get it by <%= DateTime.tomorrow.tomorrow.tomorrow.strftime("%A, %b %d") %>
+          </span>
+        </div>
+        <div class=''>
+          <%= radio_button_tag 'delivery', 'One Day Delivery D'%> 
+          One Day Delivery 
+          <span class='green-color'>
+            : get it by <%= DateTime.tomorrow.tomorrow.strftime("%A, %b %d") %>
+          </span>
+        </div>
+      <br>
+      <%= hidden_field_tag 'address_id', params[:address_id] %>
+      <div class=''>
+        <%= submit_tag 'Continue', class:'btn btn-secondary' %>
+      </div>
+      
+      <% end %>
+    </div>
+    <div class='col-md-6'>
+      <h2>
+        Delivery 1 of 1
+      </h2>
+      <h3>
+        Dispatched by Royal Mail
+      </h3>
+      <div>
+        <small class='text-muted'>
+          Dispatching to: <%= "#{@user_ad.full_name}, #{@user_ad.street_ad}, #{@user_ad.street_ad2.empty? ? nil : @user_ad.street_ad2 + ", "} #{@user_ad.town_city}, #{@user_ad.county}, #{@user_ad.postcode}, #{@user_ad.country} "%>
+        </small>
+      </div>
+      <ul>
+        <h4>
+          
+        </h4>
+        <% @product.each do |x| %>
+        <% i = 0 %>
+        <% while session[:cart].count > i %>
+        <% if session[:cart][i]['item'] == "#{x.id}" %>
+        <% @s_id = i%>
+        <% break %>
+        <% end %>
+        <% i += 1 %>
+        <% end %>
+        <% @qty = session[:cart][@s_id]['qty'].to_i%>
+          <li>
+            <strong>
+              <%= x.name %>
+            </strong>
+             <br>
+            <span class='price-color'>
+              <%= number_to_currency((x.price * @qty.ceil), :unit => "£") %>
+            </span>
+             - Quantity: <%= @qty %><br>
+            Sold by: <%= x.brand %>
+          </li>
+        <% end %>
+      </ul>
+      
+    </div>
+  </div>
+</div>

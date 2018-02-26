@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+  #User Authentication
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
+  
+  #User Info
+  resources :cards do
+    post 'dummy', to: 'cards#dummy'
+  end
+  resources :addresses, :except =>[:index, :show]
   
   # Contact Pages
   get 'contact', to: 'contacts#contact'
@@ -26,10 +33,14 @@ Rails.application.routes.draw do
   
   resource :order, :except => [:new] do
     get 'cart', to: 'orders#cart'
-    get 'address_select/handler', to: 'orders#delivery'
+    get 'address_select/handler', to: 'addresses#order'
+    get 'address_select/addresses', to: 'addresses#order_address'
+    post 'addresses', to:'addresses#create_order'
     get 'dispatch/handler', to: 'orders#dispatch_method'
     get 'pay/handler', to: 'orders#pay'
+    post 'process/handler', to: 'orders#process_order'
     get 'confirm/handler', to: 'orders#confirm'
+    post 'process/order', to: 'orders#confirm'
   end
   resources :products do
     get 'live', to: 'products#live'

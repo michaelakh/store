@@ -15,6 +15,6 @@ module FormHelper
     arr2 = country_select.scan(/>(.*?)</).reject!{|x|x==['']}.map{|x|x[0]}
     
     #creates a hash from country_select with key for ISO code and value for the Country
-    Hash[arr2.zip arr1]
+    Hash[arr2.zip arr2]
   end
 end

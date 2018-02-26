@@ -77,7 +77,7 @@
         <%= @product.stock != 0 ? "<strong class='green-color'>In stock.</strong>".html_safe : "<strong class='price-color'>Out Of Stock.</strong>".html_safe %>
       </div>
       <div class='buy-box'>
-        <%= form_tag cart_order_path, method: "get" do %>
+        <%= form_tag 'JavaScript:Void(0);', method: "get" do %>
         <div class='row'>
           <div class='col-md-12'>
             <%= label_tag "Qty", 'Qty', class:'inline-block'%>

@@ -1,14 +1,28 @@
+<style>
+  .exp-tag {
+    width:60px;
+    display:inline-block;
+  }
+  
+  .head-img {
+    padding:10px;
+    display:inline-block;
+  }
+</style>
 <div class='container'>
   <div class="row ">
-          <!-- You can make it whatever width you want. I'm making it full width
-               on <= small devices and 4/12 page width on >= medium devices -->
+    
           <div class="col-xs-12 col-md-6 margin-center" id='payment-form'>
-
-              <!-- CREDIT CARD FORM STARTS HERE -->
+            
+          <!-- CREDIT CARD FORM STARTS HERE -->
+            
+            <%= form_tag card_dummy_path(1), id:'payment-form' do %>
               <div class="panel panel-default credit-card-box">
                   <div class="panel-heading display-table" >
+                      <h2 class='center'>
+                        Add a card
+                      </h2>
                       <div class="row display-tr" >
-                          <h3 class="panel-title display-td" >Payment Details</h3>
                           <div class="display-td" > 
                             <%= image_tag('cards_icons.png', class:'img-responsive pull-right') %>
                           </div>
@@ -17,6 +31,38 @@
                   <div class="panel-body">
                       <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
                           <div class="row">
+                              <div class="col-xs-12 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="First Name">First Name</label>
+                                      <div class="input-group">
+                                          <input 
+                                              class="form-control"
+                                              name="First Name"
+                                              placeholder="First Name"
+
+                                              required autofocus 
+                                          />
+                                          <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                      </div>
+                                  </div>                            
+                              </div>
+                              <div class="col-xs-12 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="Last Name">Last Name</label>
+                                      <div class="input-group">
+                                          <input 
+                                              class="form-control"
+                                              name="First Name"
+                                              placeholder="Last Name"
+
+                                              required autofocus 
+                                          />
+                                          <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                      </div>
+                                  </div>                            
+                              </div>
+                          </div>
+                          <div class="row">
                               <div class="col-xs-12">
                                   <div class="form-group">
                                       <label for="cardNumber">CARD NUMBER</label>
@@ -24,7 +70,7 @@
                                           <input 
                                               type="tel"
                                               class="form-control"
-                                              name="cardNumber"
+                                              data-stripe="number"
                                               placeholder="Valid Card Number"
                                               autocomplete="cc-number"
                                               required autofocus 
@@ -35,20 +81,30 @@
                               </div>
                           </div>
                           <div class="row">
-                              <div class="col-xs-7 col-md-7">
+                              <div class="col-xs-12 col-md-7">
                                   <div class="form-group">
                                       <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+                                    <div>
                                       <input 
                                           type="tel" 
-                                          class="form-control" 
-                                          name="cardExpiry"
-                                          placeholder="MM / YY"
+                                          data-stripe="exp_month"
+                                          class='exp-tag form-control'
+                                          placeholder="MM"
+                                          autocomplete="cc-exp"
+                                          required 
+                                      /> /
+                                    <input 
+                                          type="tel" 
+                                          data-stripe="exp_year"
+                                          class='exp-tag form-control'
+                                          placeholder="YY"
                                           autocomplete="cc-exp"
                                           required 
                                       />
+                                    </div>
                                   </div>
                               </div>
-                              <div class="col-xs-5 col-md-5 pull-right">
+                              <div class="col-xs-12 col-md-5 pull-right">
                                   <div class="form-group">
                                       <label for="cardCVC">CV CODE</label>
                                       <input 
@@ -70,9 +126,10 @@
                                   </div>
                               </div>                        
                           </div>
+                        <%= hidden_field_tag 'address_id', params[:address_id] %>
                           <div class="row">
                               <div class="col-xs-12">
-                                  <button class="subscribe btn btn-success btn-lg btn-block" type="button">Buy Now</button>
+                                <%= submit_tag 'Add Card', class: 'btn btn-success btn-lg btn-block'  %>
                               </div>
                           </div>
                           <div class="row" style="display:none;">
@@ -80,7 +137,7 @@
                                   <p class="payment-errors"></p>
                               </div>
                           </div>
-                      </form>
+                      <% end %>
                   </div>
               </div>            
               <!-- CREDIT CARD FORM ENDS HERE -->

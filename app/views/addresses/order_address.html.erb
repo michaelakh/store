@@ -1,0 +1,55 @@
+<div class="container bg-white">
+  <div class='center'>
+    <%= image_tag('logo.png', alt:'Nucifera Logo', class:'img-box form-logo')%>
+  </div>
+  <h2 class='center'>
+    Delivery Address
+  </h2>
+  
+  <div class='container center'>
+    <% @address.each do |address| %>
+      <div class='address-box'>
+        <div class='left'>
+          <div class='address-row'>
+            <span class='bold'>
+              <%= address.full_name %>
+            </span>
+          </div>
+
+          <div class='address-row'>
+            <%= address.street_ad %>
+          </div>
+
+          <% if address.street_ad2 != '' %>
+            <div class='address-row'>
+              <%= address.street_ad2 %>
+            </div>
+          <% end %>
+
+          <div class='address-row'>
+            <%= address.town_city %>, <%= address.county %>, <%= address.postcode %>
+          </div>
+
+          <div class='address-row'>
+            <%= address.country %>
+          </div>
+        </div>
+        
+        <div class='deliever-option-box'>
+          <div class='address-row center'>
+            <%= link_to 'Deliver to this address', pay_handler_order_path(address_id:address.id), class:'btn btn-success deliver-option' %>
+          </div>
+        </div>
+
+
+        <div class='address-row'>
+            <%= link_to 'edit', edit_address_path(address), class:'btn btn-secondary address-option' %>
+            <%= link_to 'delete', address, method: :delete, class:'btn btn-danger address-option', data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    <% end %>
+    <div>
+      <%= link_to 'Add Address', new_address_path, class:'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

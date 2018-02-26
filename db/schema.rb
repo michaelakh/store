@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220193145) do
+ActiveRecord::Schema.define(version: 20180225132908) do
 
-  # These are extensions that must be enabled in order to support this database 
+  # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "full_name"
+    t.string "street_ad"
+    t.string "street_ad2"
+    t.string "postcode"
+    t.string "country"
+    t.string "town_city"
+    t.string "phone_no"
+    t.string "county"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "stripe_id"
+    t.string "stripe_subscription_id"
+    t.string "card_brand"
+    t.string "card_last4"
+    t.string "card_exp_month"
+    t.string "card_exp_year"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "coupons", force: :cascade do |t|
     t.integer "user_id"
@@ -100,13 +129,6 @@ ActiveRecord::Schema.define(version: 20180220193145) do
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "country"
-    t.string "postcode"
-    t.string "street_ad"
-    t.string "street_ad2"
-    t.string "town_city"
-    t.string "phone_no"
-    t.string "county"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -117,13 +139,6 @@ ActiveRecord::Schema.define(version: 20180220193145) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.string "stripe_id"
-    t.string "stripe_subscription_id"
-    t.string "card_brand"
-    t.string "card_last4"
-    t.string "card_exp_month"
-    t.string "card_exp_year"
-    t.datetime "expires_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar_file_name"

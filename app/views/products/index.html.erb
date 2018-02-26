@@ -20,9 +20,11 @@
   <% end %>
     <% @products.each do |product| %>
       <div class='row'>
-        <div class='col-sm-3 col-xs-4 right xs-center'>
-          <%= image_tag(product.photo.url(:medium), class:'img-thumbnail img-index')%>
-        </div>
+        <%= link_to product do %>
+          <div class='col-sm-3 col-xs-4 right xs-center'>
+            <%= image_tag(product.photo.url(:medium), class:'img-thumbnail img-index')%>
+          </div>
+        <% end %>
         <div class='col-sm-6 col-xs-8'>
           <h2 class='index-title'><%= link_to product.name, product %> </h2>
           <small>

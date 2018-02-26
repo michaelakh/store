@@ -6,15 +6,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :first_name
       t.string :last_name
       
-      # Location Columns
-      t.string :country
-      t.string :postcode
-      t.string :street_ad
-      t.string :street_ad2
-      t.string :town_city
-      t.string :phone_no
-      t.string :county
-      
       ## Devise
       ## Database authenticatable
       t.string :email,              null: false, default: ""
@@ -44,15 +35,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-      
-      # Stripe Columns
-      t.string :stripe_id
-      t.string :stripe_subscription_id
-      t.string :card_brand
-      t.string :card_last4
-      t.string :card_exp_month
-      t.string :card_exp_year
-      t.datetime :expires_at
 
       t.timestamps null: false
     end

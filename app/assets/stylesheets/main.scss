@@ -32,6 +32,10 @@ body {
   text-align:right;
 }
 
+.left {
+  text-align:left;
+}
+
 .header {
   padding:10px;
 }
@@ -172,6 +176,15 @@ img.img-box.img-product {
     font-size:1.5em;
     text-align:center;
   }
+  
+  div.address-box {
+    max-width:100%;
+    width:100%;
+    display:block;
+  }
+  div.deliever-option-box {
+    padding:10px 0px;
+  }
 }
 
 /* Extra Small Devices, Phones */ 
@@ -183,6 +196,15 @@ img.img-box.img-product {
    h2.xs-title, h3 {
     font-size:1.5em;
     text-align:center;
+  }
+  
+  div.address-box {
+    max-width:100%;
+    width:100%;
+    display:block;
+  }
+  div.deliever-option-box {
+    padding:10px 0px;
   }
 }
 
@@ -198,11 +220,15 @@ img.img-box.img-product {
     text-align:center;
   }
   
-  div.container {
-    padding:7px;
+  div.address-box {
+    max-width:100%;
+    width:100%;
+    display:block;
+    
   }
-  
- 
+  div.deliever-option-box {
+    padding:10px 0px;
+  }
 }
 
 //sm
@@ -216,6 +242,7 @@ img.img-box.img-product {
   .sm-center {
     text-align:center;
   }
+
 }
 //md
 @media(min-width:992px) and (max-width:1200px) {
@@ -287,6 +314,44 @@ img.img-box.img-product {
   width:100%;
   min-height:120px;
 }
+
+//address styles
+
+img.form-logo {
+  max-width:200px;
+}
+
+.address-box {
+  max-width:300px;
+  width:30%;
+  display:inline-block;
+  padding:10px;
+  margin:10px;
+  border:solid 0.5px #ccc;
+}
+
+.address-row .address-option {
+  display:inline-block;
+  width:47%;
+}
+
+.btn.btn-secondary {
+  border:solid 1px #ccc;
+  color:#292b2c;
+}
+
+.btn-secondary:hover {
+   background-color:#e6e6e6;
+    border-color:#adadad;
+    color:#292b2c;
+}
+.deliever-option-box {
+  padding:10px;
+}
+.deliver-option {
+  width:98%;
+}
+
 // header styles
 
 .top-header {

@@ -9,7 +9,9 @@ class User < ApplicationRecord
 
   has_many :orders, :dependent => :destroy
   has_many :products, through: :orders
-  has_many :user_info
+  has_many :user_infos
+  has_many :cards
+  has_many :addresses
   
   #Sign up Validations
   #validates_presence_of :first_name

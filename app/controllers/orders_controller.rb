@@ -17,12 +17,26 @@ class OrdersController < ApplicationController
   end
   
   def dispatch_method
+    @user_ad = current_user.addresses.find(params[:address_id])
+    
+    product_id = []
+    
+    session[:cart].each do |x|
+      product_id << x['item'].to_i
+    end
+    
+    @product = Product.find(product_id)
   end
   
   def pay
   end
   
   def confirm
+    
+  end
+  
+  def process_order
+    redirect_to confirm_handler_order_path(address_id:params[:address_id], delivery:params[:delivery])
   end
   
   def create
