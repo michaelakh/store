@@ -93,7 +93,7 @@
         <strong>Want it delivered by <%= DateTime.tomorrow.tomorrow.strftime("%A, %d %b")%>.?</strong> Order within <span id='demo' class='green-color'></span> and choose One-Day Delivery at checkout. <%= link_to("Details", '#') %>
       </div>
       <div class='dispatch-info'>
-        <small>Dispatched from and sold by <%= link_to("Nucifera", about_nucifera_path) %>. </small>
+        <small>Dispatched from and sold by <%= @product.brand %>. </small>
       </div>
       <div class='product-info'>
         <small>Size: <strong><%= @product_info.volume == nil ? 'empty' : "#{@product_info.volume}#{@product_info.volume_units}" %></strong></small>
@@ -122,9 +122,9 @@
           Product Description
       </h3>
       <div class='small-text indent'>
-        <p class='indent'>
-          <%= @product.description %>
-        </p>
+        <div class='indent'>
+          <%= @product.description.html_safe %>
+        </div>
       </div>
     </div>
   </div>
