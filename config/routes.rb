@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   
   # About Pages
   get 'about', to: 'about#about'
-  get 'about/nucifera', to: 'about#nucifera'
+  get 'about/wholesale', to: 'about#wholesale'
   
   # Legal Pages
   get 'legal/privacy_policy', to: 'legals#privacy'
