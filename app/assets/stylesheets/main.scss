@@ -185,6 +185,12 @@ img.img-box.img-product {
   div.deliever-option-box {
     padding:10px 0px;
   }
+  
+  div#header-carousel .carousel-inner img.carousel {
+    height:200px;
+    width: 100vw;
+    object-fit:cover;
+  }
 }
 
 /* Extra Small Devices, Phones */ 
@@ -206,6 +212,14 @@ img.img-box.img-product {
   div.deliever-option-box {
     padding:10px 0px;
   }
+  
+  div#header-carousel .carousel-inner img.carousel {
+    height:200px;
+    width: 100vw;
+    object-fit:cover;
+  }
+  
+
 }
 
 //xs
@@ -229,6 +243,13 @@ img.img-box.img-product {
   div.deliever-option-box {
     padding:10px 0px;
   }
+  
+  div#header-carousel .carousel-inner img.carousel {
+    height:250px;
+    width: 100vw;
+    object-fit:cover;
+  }
+
 }
 
 //sm
@@ -652,6 +673,8 @@ a.navbar-brand {
   color:black;
   font-weight:bold;
 }
+
+
 
 // Welcome Css
 .container.review {
