@@ -3,7 +3,6 @@ $f-color : #fff;
 $font : 'ProximaNova,Noto Sans KR,"Helvetica Neue",Helvetica,Roboto,Arial,ヒラギノ角ゴ Pro W3,Hiragino Kaku Gothic Pro,Osaka,メイリオ,Meiryo,ＭＳ Ｐゴシック,MS PGothic,sans-serif';
 
 
-
 // Main Foundation
 
 body {
@@ -55,8 +54,10 @@ body {
 }
 
 .bg-white {
+  margin-top:0px;
   font-weight:100;
   padding-bottom:20px;
+  padding-top:1px;
   background-color:white;
 }
 
@@ -104,6 +105,55 @@ hr {
   
 .info-title {
   color:#C60;
+}
+
+ul.normal {
+  list-style-type: none;
+}
+
+//Flash Messages
+
+.flash.notice, .flash.alert, .flash.success, .flash.error {
+    position:fixed;
+    z-index: 10;
+    top:-200px;
+    left:0px;
+    background-color:#DDD;
+    width:100%;
+    text-align:center;
+    font-weight:bold;
+    padding:5px;
+    -webkit-animation-name: notice; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 7s; /* Safari 4.0 - 8.0 */
+    animation-name: notice;
+    animation-duration: 7s;
+}
+
+.flash.alert {
+    background-color:red;
+    font-family:sans-serif;
+    font-size:1.2em;
+    color:white;
+}
+.flash.success {
+    background-color:forestgreen;
+    font-family:sans-serif;
+    font-size:1.2em;
+    color:white;
+}
+.flash.error {
+    background-color:yellow;
+    font-family:sans-serif;
+    font-size:1.2em;
+    color:white;
+}
+
+@keyframes notice {
+    0%   {top:-200px;}
+    10%  {top:0px;}
+    80%  {top:0px;}
+    90%  {top:-500px;}
+    100% {display:none;}
 }
 // arrows
   
@@ -158,6 +208,10 @@ img.img-box {
   max-width:700px;
   margin-bottom: 20px;
   margin:10px auto;
+}
+
+img.img-confirm {
+  max-height:150px;
 }
 
 img.img-box.img-product {
@@ -391,7 +445,7 @@ img.form-logo {
 
 .top-header span.social {
   position:absolute;
-  right:110px;
+  right:140px;
 }
 
 .top-header div.social {
@@ -410,7 +464,7 @@ img.form-logo {
 @media (max-width: 576px) { 
     .top-header span.social {
     position:absolute;
-    right:110px;
+    right:140px;
     top: 35px;
   }
 
@@ -579,6 +633,26 @@ svg.snapchat-icon{
     div.snapchat-icon:hover path.snapchat-icon-stroke{
         stroke:black;
     }
+
+svg.cart-icon{
+
+    }
+    div.cart-icon{
+        display:inline-block;
+    }
+    .cart-background{
+        transition: fill 0.1s;
+    }
+    .cart-icon{
+        transition: fill 0.2s;
+    }
+    div.cart-icon:hover .cart-background{
+        background-color:#fff;
+    }
+    div.cart-icon:hover path.cart-icon, div.cart-icon:hover circle.cart-icon{
+        fill:#747474;
+    }
+
 
 // legal styles
     div.container.legal {

@@ -1,5 +1,169 @@
 <div class='container bg-white'>
   <h2>
-    Order Confirmation Under Construction 
+    Review your order
   </h2>
+  
+  <div class='info-box-primary'>
+    <div class='order-list-items'>
+    <% if session[:cart] != nil %>
+      <div class='row'>
+        <div class='col-md-4 col-sm-6'>
+          <ul class='normal'>
+            <li>
+              <strong>Delivery Address </strong> <%= link_to 'change', {:controller => "addresses", :action => "order_address", :paction => "confirm"} %>
+            </li>
+            <li>
+              <%= @address.full_name %>
+            </li>
+            <li>
+              <%= @address.street_ad.upcase %>
+            </li>
+            <% if @address.street_ad2 != '' %>
+              <li>
+                <%= @address.street_ad2.upcase %>
+              </li>
+            <% end %>
+            <li>
+              <%= "#{@address.town_city}, #{@address.county}, #{@address.postcode}" %>
+            </li>
+            <li>
+              <%= @address.country %>
+            </li>
+            <li>
+              <%= @address.phone_no %>
+            </li>
+          </ul>
+        </div>
+
+        <div class='col-md-4 col-ms-6'>
+          <ul class='normal'>
+            <li>
+              <strong> Payment Method </strong> <%= link_to 'change', '#'%>
+            </li>
+            <li>
+              Card details are not processed yet
+            </li>
+
+          </ul>
+          <ul class='normal'>
+            <li>
+              <strong>Invoice Address </strong>
+            </li>
+            <li>
+              <%= @address.full_name %>
+            </li>
+            <li>
+              <%= @address.street_ad.upcase %>
+            </li>
+            <% if @address.street_ad2 != '' %>
+              <li>
+                <%= @address.street_ad2.upcase %>
+              </li>
+            <% end %>
+            <li>
+              <%= "#{@address.town_city}, #{@address.county}, #{@address.postcode}" %>
+            </li>
+            <li>
+              <%= @address.country %>
+            </li>
+          </ul>
+        </div>
+
+        <div class='col-md-4 col-sm-6'>
+          <%= form_tag({controller: "orders", action: "promo"}, method: "get") do %>
+            <div class="form-group">
+              <div class="field">
+                <%= label_tag "Gift Card or Promotional Code" %>
+                <%= text_field_tag(:question,'', class: 'form-control', placeholder: 'enter code') %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="actions">
+                <%= submit_tag 'Apply', class: 'btn btn-outline-success my-2 my-sm-0'  %>
+              </div>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+      <h4> Your Order</h4>
+      <%= form_tag({controller: "orders", action: "create_order"}, method: "get") do %>
+        <% session[:cart].each do |x| %>
+            <% if x['item'] != nil%>
+              <% product = Product.find(x['item'])%>
+              <div class='row '>
+                <div class='col-sm-3 col-xs-4 right xs-center'>
+                  <%= image_tag(product.photo.url(:medium), class:'img-thumbnail img-index img-confirm')%>
+                </div>
+                <div class='col-sm-6 col-xs-8'>
+                  <h2 class='index-title'><%= link_to product.name, product %> </h2>
+                  <div class='stock'>
+                    <small>
+                      <%= product.stock != 0 ? "<strong class='green-color'>In stock.</strong>".html_safe : "<strong class='price-color'>Out Of Stock.</strong>".html_safe %>
+                    </small>
+                  </div>
+                  <div class='Delivery'>
+                        <small class='text-muted'>
+                          Eligible for FREE UK Delivery
+                        </small>
+                      </div>
+                  <small>
+                    by:<%= product.brand %>
+                  </small>
+                </div>
+                <div class='col-sm-3 col-xs-12 extra-padding-top'>
+                  <div class='aside-info'>
+                    <span>
+                      Quantity <%= select_tag "product[#{product.id}[qty]]", options_for_select((1..10),x['qty'].to_i), class: 'inline-block', id:"product-#{product.id}", "data-qty":x['qty'] %>
+                    </span>
+                    <%= hidden_field_tag "product[#{product.id}[item]]", product.id %>
+                    
+                  </div>
+                  <div class='aside-info'>
+                    <span>
+                      Price <strong class='big-price' id='product-price-<%= product.id %>'><%= number_to_currency(product.price, :unit => "£") %></strong>
+                    </span>
+                  </div>
+                  <hr class='price-divide'>
+                  <div class='aside-info'>
+                    <span>
+                      Sub Total Price <strong class='big-price price-color' id='product-total-price-<%= product.id %>'><%= number_to_currency((product.price * x['qty'].to_i.ceil), :unit => "£") %></strong>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <hr>
+          <% end %>
+        <% end %>
+        
+      <div class='right total-box'>
+        <h3> total = </h3> 
+      </div>
+      <%= hidden_field_tag "address", params[:address_id] %>
+      <%= hidden_field_tag "delivery", params[:delivery] %>
+      <div class='center'>
+        <%= submit_tag "Buy Now", class: 'btn btn-primary btn-lg md-right' %>
+      </div>
+    
+    <% end %>
+      
+    <% else %>
+    <div class='center'>
+      You seem to have come to this page accidentally, Go to the <%= link_to 'Store Page', products_path %> to add items to your cart normally and come back
+    </div>
+    <% end %>
+  </div>
 </div>
+
+  <script>
+    $('select').on('change', function() {
+      var qty = $(this).data('qty')
+      var productId = this.id.split("-")[1];
+      var initCalc = $('#product-price-'+productId).html().split("£")[1];
+      $('#product-total-price-'+productId).html("£"+((initCalc*this.value).toFixed(2) ));
+      
+      $(this).data('qty',this.value)
+    })
+  </script>
+

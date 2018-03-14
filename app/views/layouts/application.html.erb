@@ -17,10 +17,8 @@
     <% end %>
     <div class='blue-gradient'>
       <div class='container'>
-        <% flash.each do |key,value|%>
-        <div class="alert <%= flash_class(key) %>">
-          <%= value %>
-        </div>
+        <% flash.each do |key, msg| %>
+          <%= content_tag :div, msg, class: "flash #{key}" %>
         <% end %>
 
         <%= yield %>

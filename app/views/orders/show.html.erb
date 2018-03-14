@@ -1,0 +1,87 @@
+<% products = [] %>
+<% qtys = [] %>
+<% prices = [] %>
+<% date = Time.parse(@order.updated_at.to_s) %>
+<div class='info-box-primary'>
+  <ul class='normal'>
+    <li>
+      <strong> Order </strong>
+    </li>
+    <li>
+      Reference:<%= @order.reference%>
+    </li>
+    <li>
+      Total Price: <strong class='price-color'><%= number_to_currency(@order.price, :unit => "£") %></strong>
+    </li>
+  </ul>
+  <h4 class='center'> 
+    Order Items 
+  </h4>
+  <% @order_info.each do |x| %>
+    <% meta = x.split(',')%>
+    <% products << meta[0] %>
+    <% qtys << meta[1] %>
+    <% prices << meta[1] %>
+    <% product = Product.find(meta[0]) %>
+    <div class='row '>
+      <div class='col-sm-3 col-xs-4 right xs-center'>
+        <%= image_tag(product.photo.url(:medium), class:'img-thumbnail img-index img-confirm')%>
+      </div>
+      <div class='col-md-6 col-xs-8'>
+        <h2 class='index-title'><%= link_to product.name, product %> </h2>
+          <ul class='normal'>
+            <li>
+              <span>
+                Quantity <%= meta[1] %>
+              </span>
+            </li>
+            <li>
+              <span>
+                Price <strong class='big-price price-color' id='product-price-<%= product.id %>'><%= number_to_currency(meta[2].to_f, :unit => "£") %></strong>
+              </span>
+            </li>
+          </ul>
+      </div>
+
+    </div>
+  <hr>
+  <% end %>
+  
+  
+  <ul class='row normal'>
+    <div class='col-md-4'>
+      <h4 class=''>
+        Delivery Address
+      </h4>
+      <li>
+        <strong>Delivery Address </strong> 
+      </li>
+      <li>
+        <%= @address.full_name %>
+      </li>
+      <li>
+        <%= @address.street_ad.upcase %>
+      </li>
+      <% if @address.street_ad2 != '' %>
+        <li>
+          <%= @address.street_ad2.upcase %>
+        </li>
+      <% end %>
+      <li>
+        <%= "#{@address.town_city}, #{@address.county}, #{@address.postcode}" %>
+      </li>
+      <li>
+        <%= @address.country %>
+      </li>
+      <li>
+        <%= @address.phone_no %>
+      </li>
+    </div>
+    <div class='col-md-8'>
+      <strong>Expected Delivery Date:</strong>
+      <%= date.tomorrow.tomorrow.strftime("%A, %d %b %Y") %>
+    </div>
+    
+  </ul>
+</div>
+

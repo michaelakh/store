@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :coupons
   #User Authentication
   devise_for :users, controllers: {
     sessions: 'users/sessions'
@@ -31,8 +32,9 @@ Rails.application.routes.draw do
   get 'legal/terms', to: 'legals#terms'
   get 'legal/promotions/details', to:'legals#promotions'
   
-  resource :order, :except => [:new] do
+  resource :order, :except => [:new, :show] do
     get 'cart', to: 'orders#cart'
+    get 'remove_item', to:'orders#remove_cart_item'
     get 'address_select/handler', to: 'addresses#order'
     get 'address_select/addresses', to: 'addresses#order_address'
     post 'addresses', to:'addresses#create_order'
@@ -41,6 +43,8 @@ Rails.application.routes.draw do
     post 'process/handler', to: 'orders#process_order'
     get 'confirm/handler', to: 'orders#confirm'
     post 'process/order', to: 'orders#confirm'
+    
+    get ':id', to: 'orders#show'
   end
   resources :products do
     get 'live', to: 'products#live'

@@ -11,6 +11,21 @@ class OrdersController < ApplicationController
     end
   end
   
+  def remove_cart_item
+    session[:cart].each do |x| 
+      if x['item'] == "#{params[:item]}"
+        x['item'] = nil
+      end
+    end 
+    session[:cart].reject! { |v| v['item'] == nil } 
+    
+    if session[:cart] == []
+      session[:cart] = nil
+    end
+    flash[:success] = 'Item was removed from basket'
+    redirect_to cart_order_path
+  end
+  
   def delivery
     @user = User.find(current_user.id)
     @test = update_items
@@ -32,23 +47,57 @@ class OrdersController < ApplicationController
   end
   
   def confirm
-    
+    @products = Product.find( find_products )
+    @address = Address.find(params[:address_id]) 
   end
   
   def process_order
     redirect_to confirm_handler_order_path(address_id:params[:address_id], delivery:params[:delivery])
   end
   
-  def create
+  def create_order
+    update_items
+    @products = Product.find( find_products )
+    result = ''
+    @price = 0
+    session[:cart].each do |x|
+      product = Product.find(x['item'])
+      result += "#{x['item']},#{x['qty']},#{product.price}|"
+      @price += product.price
+    end
+    @product_iqp = result.chop
+    @address = Address.find(params[:address])
+    #create slug with 5 random characters and 5 random integers for reference
+    @reference = [*('A'..'Z')].shuffle[0,5].join + [*(1..9)].shuffle[0,5].join
+    @order = Order.new(reference:@reference, product_iqp:@product_iqp, address_id:@address.id, user_id:current_user.id,delivery:params[:delivery],price:@price)
+    
+    respond_to do |format|
+      if @order.save
+        flash[:success] = 'Your order has been placed'
+        remove_item_from_cart
+        format.html { redirect_to :controller => "orders", :action => "show", :id => @order.id }
+        format.json { render :show, status: :created, location: @address }
+      else
+        format.html { render :order }
+        format.json { render json: @address.errors, status: :unprocessable_entity }
+      end
+    end
+    
   end
   
   def show
+    @order = Order.find(params[:id])
+    @address = Address.find(@order.address_id)
+    products = []
+    @order_info = @order.product_iqp.split('|')
+    
   end
   
   def edit
   end
   
   def update
+    @address = Order.find(params[:id])
   end
   
   def destroy
@@ -87,9 +136,11 @@ class OrdersController < ApplicationController
   end
   
   def update_items
-    session[:cart].each do |v,k|
-      v['qty'] = params[:product][v['item']]['qty']
-    end
+    if params[:product] != nil
+        session[:cart].each do |v,k|
+          v['qty'] = params[:product][v['item']]['qty']
+        end
+      end
   end
   
   def remove_item_from_cart
@@ -102,5 +153,15 @@ class OrdersController < ApplicationController
     else
         0
     end
+  end
+  
+  def find_products
+    result = []
+    session[:cart].each do |x|
+      if x['item'] != nil && x['qty'] != nil 
+        result << x['item'].to_i
+      end
+    end
+    result
   end
 end

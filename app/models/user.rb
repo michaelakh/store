@@ -8,6 +8,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :orders, :dependent => :destroy
+  has_many :invoices, :dependent => :destroy
   has_many :products, through: :orders
   has_many :user_infos
   has_many :cards
