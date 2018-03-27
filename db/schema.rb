@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314095125) do
+ActiveRecord::Schema.define(version: 20180321150325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20180314095125) do
   create_table "coupons", force: :cascade do |t|
     t.string "code"
     t.float "discount"
-    t.boolean "valid"
+    t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(version: 20180314095125) do
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "address_id"
     t.integer "order_id"
     t.datetime "created_at", null: false
@@ -88,6 +87,25 @@ ActiveRecord::Schema.define(version: 20180314095125) do
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_orders_products_on_order_id"
     t.index ["product_id"], name: "index_orders_products_on_product_id"
+  end
+
+  create_table "p_questions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "product_id"
+    t.integer "rating"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "p_reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "product_id"
+    t.integer "rating"
+    t.text "headline"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "product_infos", force: :cascade do |t|
@@ -147,6 +165,13 @@ ActiveRecord::Schema.define(version: 20180314095125) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
+    t.datetime "locked_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar_file_name"

@@ -1,0 +1,10 @@
+<p> Welcome to Nucifera </p>
+<p> You're almost ready to get started with us. Please confirm your email so we know it's really you</p>
+
+<p>Click the link bellow to confirm your email address</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<p>This email was sent to <%= @email %></p>
+
+<small> If there was a mistake, please ignore this email</small>

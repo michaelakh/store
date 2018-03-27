@@ -2,6 +2,11 @@
 $f-color : #fff;
 $font : 'ProximaNova,Noto Sans KR,"Helvetica Neue",Helvetica,Roboto,Arial,ヒラギノ角ゴ Pro W3,Hiragino Kaku Gothic Pro,Osaka,メイリオ,Meiryo,ＭＳ Ｐゴシック,MS PGothic,sans-serif';
 
+//fonts
+@font-face {
+    font-family: "Kollektif";
+    src: font-url("Kollektif.ttf") format("truetype");
+}
 
 // Main Foundation
 
@@ -245,6 +250,15 @@ img.img-box.img-product {
     width: 100vw;
     object-fit:cover;
   }
+  .container.bg {
+    font-size:1.2em;
+  }
+  
+  h1.container.bg.title {
+    font-size:1.2em;
+    max-width:250px;
+    
+  }
 }
 
 /* Extra Small Devices, Phones */ 
@@ -272,7 +286,14 @@ img.img-box.img-product {
     width: 100vw;
     object-fit:cover;
   }
+  .container.bg {
+    font-size:1.4em;
+  }
   
+  h1.container.bg.title {
+    font-size:1.4em;
+    max-width:250px;
+  }
 
 }
 
@@ -304,6 +325,15 @@ img.img-box.img-product {
     object-fit:cover;
   }
 
+  .container.bg {
+    font-size:1.7em;
+  }
+  
+  h1.container.bg.title {
+    font-size:2em;
+    max-width:250px;
+    
+  }
 }
 
 //sm
@@ -317,7 +347,9 @@ img.img-box.img-product {
   .sm-center {
     text-align:center;
   }
-
+  h1.container.bg.title {
+    padding-bottom:30px;
+  }
 }
 //md
 @media(min-width:992px) and (max-width:1200px) {
@@ -330,6 +362,9 @@ img.img-box.img-product {
   .md-center {
     text-align:center;
   }
+  h1.container.bg.title {
+    padding-bottom:30px;
+  }
 }
 //lg
 @media(min-width:1200px) {
@@ -341,6 +376,10 @@ img.img-box.img-product {
   }
   .lg-center {
     text-align:center;
+  }
+  
+  h1.container.bg.title {
+    padding-bottom:30px;
   }
 }
 
@@ -668,8 +707,8 @@ svg.cart-icon{
     
     div.legal p {
         line-height:1.3;
-        padding:10px 10px 10px 50px;
-        width:90%;
+        padding:10px 10px 10px 10px;
+        width:100%;
         margin:0px;
     }
     
@@ -748,7 +787,16 @@ a.navbar-brand {
   font-weight:bold;
 }
 
-
+.container.bg.title {
+  max-width: 500px;
+  border-radius:20px;
+  background-color:rgba(255,255,255,0.2);
+  color:black;
+  font-weight:normal;
+  font-size:3.5em;
+  color:black;
+  font-family:Kollektif;
+}
 
 // Welcome Css
 .container.review {
@@ -770,6 +818,10 @@ span.tick-box-content {
 
 .container.review li {
   list-style-type:none;
+}
+
+ul.row.review {
+  padding:0px;
 }
 
 

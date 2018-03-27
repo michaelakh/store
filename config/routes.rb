@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   
   # Contact Pages
   get 'contact', to: 'contacts#contact'
+  get 'email_confirm', to: 'contacts#email_confirm'
   
   # Skin Care Pages
   get 'skin_care', to: 'skin_care#welcome'
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   get 'skin_care/dry_skin', to: 'skin_care#dry_skin'
   get 'skin_care/bruises', to: 'skin_care#bruises'
   get 'skin_care/cradle_cap', to: 'skin_care#cradle_cap'
+  get 'skin_care/science', to: 'skin_care#science'
   
   # About Pages
   get 'about', to: 'about#about'
@@ -31,6 +33,8 @@ Rails.application.routes.draw do
   get 'legal/privacy_policy', to: 'legals#privacy'
   get 'legal/terms', to: 'legals#terms'
   get 'legal/promotions/details', to:'legals#promotions'
+  get 'legal/return_policy', to:'legals#return_policy'
+  get 'legal/disclaimer', to:'legals#disclaimer'
   
   resource :order, :except => [:new, :show] do
     get 'cart', to: 'orders#cart'

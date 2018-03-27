@@ -1,3 +1,13 @@
+<style>
+  .review-box img.img-circle {
+    width:75px;
+  }
+  
+  .review-box {
+    padding:10px 0px;
+    border-bottom:solid 1px #CCC;
+  }
+</style>
 <div class='bg-white'>
   <div class='row'>
     <div class='col-md-6 col-sm-6 center'>
@@ -15,18 +25,19 @@
         </small>
       </div>
       
-      <div class="star-rating inline-block" data-score='4.5' >
+      <div class="star-rating inline-block" data-score='<%= @product.p_reviews.average(:rating)%>' >
       </div>
       
       <div class='inline-block'>
-        100 customer reviews 
+        <%= @product.p_reviews.count(:rating)%> customer reviews 
       </div>
-      
+      <!--
       |
       
       <div class='inline-block'>
         10 answered reviews 
       </div>
+      -->
       <div class='product-info'>
         <div class='best-seller-box inline-block'>
           #1 Best Seller
@@ -78,7 +89,7 @@
         <% end %>
       </div>
       <div class='product-info'>
-        <strong>Want it delivered by <%= DateTime.tomorrow.tomorrow.strftime("%A, %d %b")%>.?</strong> Order within <span id='demo' class='green-color'></span> and choose One-Day Delivery at checkout. <%= link_to("Details", '#') %>
+        <strong>Want it delivered by <%= DateTime.tomorrow.tomorrow.strftime("%A, %d %b")%>.?</strong> Order within <span id='demo' class='green-color'></span> and choose One-Day Delivery at checkout. <%= link_to("Details", legal_promotions_details_path) %>
       </div>
       <div class='dispatch-info'>
         <small>Dispatched from and sold by <%= @product.brand %>. </small>
@@ -137,103 +148,159 @@
      </div>      
    </div>
 
-      <div class='table' id='product-info'>
-       <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">
-              <span class='text-muted'>
-                Technical Details
-              </span>
-            </th>
-            <th scope="col">
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              Product Dimensions
-            </td>
-            <td><%= @product_info.product_dimensions%></td>
-          </tr>
-          <tr>
-            <td>
-              Item model number
-            </td>
-            <td><%= @product_info.item_model_number%></td>
-          </tr>
-          <tr>
-            <td>
-              Volume
-            </td>
-            <td><%= @product_info.volume %><%= @product_info.volume_units %></td>
-          </tr>
-          <tr>
-            <td scope="row">
-              Storage Instructions
-            </td>
-            <td><%= @product_info.storage_instructions %></td>
-          </tr>
-           <tr>
-            <td>
-              Country of origin
-             </td>
-            <td><%= @product_info.country_of_origin %></td>
-          </tr>
-           <tr>
-            <td>
-               Country of origin of primary ingredient(s)
-             </td>
-            <td><%= @product_info.primary_ingredient_origin%></td>
-          </tr>
-           <tr>
-            <td>
-              Brand
-             </td>
-            <td><%= @product.brand %></td>
-          </tr>
-           <tr>
-            <td>
-              Format
-             </td>
-            <td><%= @product_info.format %></td>
-          </tr>
-           <tr>
-            <td>
-              Speciality
-             </td>
-            <td><%= @product_info.speciality %></td>
-          </tr>
-           <tr>
-            <td>
-              Certification
-             </td>
-            <td><%= @product_info.certification %></td>
-          </tr>
-           <tr>
-            <td>
-              Caffeine content
-             </td>
-            <td><%= @product_info.caffeine %></td>
-          </tr>
-           <tr>
-            <td>
-              Awards
-             </td>
-            <td><%= @product_info.awards %></td>
-          </tr>
-          <tr>
-            <td>
-              Manufacturer/Producer
-             </td>
-            <td><%= @product_info.manufacturer %></td>
-          </tr>
-          
-          
-        </tbody>
-      </table>
+    <div class='table' id='product-info'>
+     <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">
+            <span class='text-muted'>
+              Technical Details
+            </span>
+          </th>
+          <th scope="col">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            Product Dimensions
+          </td>
+          <td><%= @product_info.product_dimensions%></td>
+        </tr>
+        <tr>
+          <td>
+            Item model number
+          </td>
+          <td><%= @product_info.item_model_number%></td>
+        </tr>
+        <tr>
+          <td>
+            Volume
+          </td>
+          <td><%= @product_info.volume %><%= @product_info.volume_units %></td>
+        </tr>
+        <tr>
+          <td scope="row">
+            Storage Instructions
+          </td>
+          <td><%= @product_info.storage_instructions %></td>
+        </tr>
+         <tr>
+          <td>
+            Country of origin
+           </td>
+          <td><%= @product_info.country_of_origin %></td>
+        </tr>
+         <tr>
+          <td>
+             Country of origin of primary ingredient(s)
+           </td>
+          <td><%= @product_info.primary_ingredient_origin%></td>
+        </tr>
+         <tr>
+          <td>
+            Brand
+           </td>
+          <td><%= @product.brand %></td>
+        </tr>
+         <tr>
+          <td>
+            Format
+           </td>
+          <td><%= @product_info.format %></td>
+        </tr>
+         <tr>
+          <td>
+            Speciality
+           </td>
+          <td><%= @product_info.speciality %></td>
+        </tr>
+         <tr>
+          <td>
+            Certification
+           </td>
+          <td><%= @product_info.certification %></td>
+        </tr>
+         <tr>
+          <td>
+            Caffeine content
+           </td>
+          <td><%= @product_info.caffeine %></td>
+        </tr>
+         <tr>
+          <td>
+            Awards
+           </td>
+          <td><%= @product_info.awards %></td>
+        </tr>
+        <tr>
+          <td>
+            Manufacturer/Producer
+           </td>
+          <td><%= @product_info.manufacturer %></td>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+  <!--
+  <div class='questions'>
+    <h1>
+      Customer questions & answers
+    </h1>
+    <div class='row'>
+      
     </div>
+  </div>
+-->
+  <hr>
+  <div class='reviews'>
+    <h1>
+      Customer reviews
+    </h1>
+    <% @reviews.each do |review| %>
+      <div class='review-box row'>
+        <div class='col-xs-3 right'>
+          <% if review.user != nil && review.user.avatar.exists? %>
+            <%= image_tag review.user.avatar.url(:thumb), class:'img-circle'%>
+          <% else %>
+          <div class='user-icon'>
+            <%= review.user.first_name[0] %>
+          </div>
+          <% end %>
+        </div>
+
+        <div class='col-xs-9' >
+          <div >
+            <%= review.user.first_name%>
+            <%= review.user.last_name%>
+          </div>
+          <div class="star-rating inline-block" data-score='<%= review.rating%>' >
+          </div>
+          <span class='bold'>
+            <%= review.headline%>
+          </span>
+          <div class='date'>
+            <span>
+              <%= review.created_at.to_date.strftime("%d %b %Y")%>
+            </span>
+          </div>
+          <div >
+            <%= review.content%>
+          </div>
+          <!--
+          <%# if review.likes != nil%>
+          <div>
+            <%= %> people found this helpfull
+          </div>
+          <%# end %>
+          -->
+        </div>
+      </div>
+    <% end %>
+  </div>
   <%= link_to 'Edit', edit_product_path(@product) %> |
   <%= link_to 'Back', products_path %>
 

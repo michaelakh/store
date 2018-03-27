@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    @reviews = PReview.all.sort_by(&:created_at)
   end
   
   def preview

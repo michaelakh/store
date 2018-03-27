@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
   
   has_many :product_infos, :dependent => :destroy
+  has_many :p_reviews, :dependent => :destroy
   accepts_nested_attributes_for :product_infos
   has_and_belongs_to_many :orders
   

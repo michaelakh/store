@@ -24,4 +24,7 @@ class SkinCareController < ApplicationController
   def nucifera
   end
   
+  def science
+  end
+  
 end

@@ -1,0 +1,43 @@
+<div class='container bg-white'>
+  <div class='center'>
+    <%= image_tag 'how-to-use.jpg', alt:'How to use nucifera' %>
+    <%= image_tag 'how-to-store.jpg', alt:'How to store nucifera' %>
+    <%= image_tag 'how-to-caution.jpg', alt:'caution when using nucifera' %>
+    <p>
+      We recommend using Nucifera at least 1 or 2 times a day to keep your skin nourished and moisturized.
+    </p>
+  </div>
+  
+  <div class='row'>
+    <div class='col-md-4 center'>
+      <%= link_to(products_path) do%>
+        <%= image_tag('nucifera500x500.jpg', class:'img-circle ibi-1', alt:'nucifera')%>
+      <% end %>
+    </div>
+    <div class='col-md-8'>
+      <h3>
+        Nucifera
+      </h3>
+
+      <p>
+        Using an emollient like Nucifera<sup>®</sup> that uses a combination of coconut oil and beeswax to repair, nourish and protect your skin.
+      </p>
+
+      <p>
+        Nucifera is also clinically tested and backed by health care professionals who have spent years to make sure the product works for most people
+      </p>
+
+      <p>
+        Nucifera has the purest form of organic coconut oil in it. The coconut oil in Nucifera penetrates the skin and provides rich moisture that nourishes the skin. It also has antioxidants that removes wrinkles and prevents premature aging. 
+      </p>
+
+      <p>
+        The beeswax in nucifera greatly softens your skin and creates a long-lasting protective coating against the elements and contaminants in the environment.
+      </p>
+      <div class='center'>
+        <%= link_to('Buy Now', products_path, class:'btn btn-lg btn-primary', role:'button') %>
+      </div>
+    </div>
+    
+  </div>
+</div>

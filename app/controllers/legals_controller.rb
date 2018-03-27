@@ -7,4 +7,7 @@ class LegalsController < ApplicationController
   
   def promotions
   end
+  
+  def return_policy
+  end
 end

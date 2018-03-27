@@ -9,9 +9,10 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <%= image_tag('Natural-Skin-Care-Therapy.jpg', class:'first-slide carousel',alt:'First slide carousel')%>
+          <%= image_tag('Natural-Skin-Care-Therapy.jpg', class:'first-slide carousel',alt:'Natural-Skin-Care-Therapy')%>
            <div class="container">
             <div class="carousel-caption">
+              <h1 class='container bg title' style='color:black;'> Natural Skin Care Therapy </h1>
               <p style='color:black;'>Clinically Tested Treatment for Dry Skin</p>
               
               <p><%= link_to('Buy Now', products_path, class:'btn btn-lg btn-primary', role:'button')%></p>
@@ -19,21 +20,22 @@
           </div>
         </div>
         <div class="item">
-          <%= image_tag('mailing-list.jpg', class:'second-slide carousel',alt:'Second slide')%>
-          <div class="container">
-            <div class="carousel-caption">
-              <h1 class='container bg'> Keep up to date with our Latest Offers <br> Join Our Mailing List </h1>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Join</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <%= image_tag('Learn-skin.jpg', class:'third-slide carousel',alt:'Third slide carousel')%>
+          <%= image_tag('Learn-skin.jpg', class:'second-slide carousel',alt:'Third slide carousel')%>
           <div class="container">
             <div class="carousel-caption">
               <h1 class='container bg'>Learn More About Your Skin</h1>
               <p class='container bg'>Get Advice From Professionals</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn More</a></p>
+              <p><%= link_to('Learn More', skin_care_science_path, class:'btn btn-lg btn-primary', role:'button')%></p>
+            </div>
+          </div>
+         
+        </div>
+        <div class="item">
+          <%= image_tag('mailing-list.jpg', class:'third-slide carousel',alt:'Second slide')%>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1 class='container bg'> Keep up to date with our Latest Offers <br> Join Our Mailing List </h1>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Join</a></p>
             </div>
           </div>
         </div>

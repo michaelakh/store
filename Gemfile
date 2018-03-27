@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#easy pagination
+gem 'kaminari'
 #auto complete with nested forms
 gem 'rails-jquery-autocomplete'
 # bootstrap gems
