@@ -1,5 +1,6 @@
 class PReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
   def index
   end
   
@@ -11,15 +12,15 @@ class PReviewsController < ApplicationController
   end
   
   def create
-     @review = Coupon.new(review_params)
-
+    @review = PReview.new(review_params)
+    @review.user_id = current_user.id
     respond_to do |format|
-      if @coupon.save
-        format.html { redirect_to @coupon, notice: 'Coupon was successfully created.' }
-        format.json { render :show, status: :created, location: @coupon }
+      if @review.save
+        format.html { redirect_to @review.product, notice: 'Thanks for leaving a review.' }
+        format.json { render :show, status: :created, location: @review }
       else
         format.html { render :new }
-        format.json { render json: @coupon.errors, status: :unprocessable_entity }
+        format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -36,11 +37,11 @@ class PReviewsController < ApplicationController
   private
   
     def set_review
-      @review = Product.find(params[:id])
+      @review = PReview.find(params[:id])
     end
   
     def review_params
-      params.require(:preview).permit(:product_id, :rating, :discount, :headline, :content)
+      params.require(:p_review).permit(:product_id, :rating, :headline, :content)
     end
   
 end

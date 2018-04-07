@@ -52,7 +52,9 @@ Rails.application.routes.draw do
   end
   resources :products do
     get 'live', to: 'products#live'
+    get 'reviews', to: 'products#reviews'
   end
+  resources :p_reviews, :except => [:edit, :update]
   
   #general Default route... may become depreciated in future releases
   get ':controller(/:action(/:id))'

@@ -15,6 +15,10 @@ body {
   line-height:1.5;
 }
 
+html {
+  min-width:400px;
+}
+
 .blue-gradient {
   background:#69AFF3;
   background: linear-gradient(to bottom,#69AFF3, #FFFFFF);
@@ -398,6 +402,40 @@ img.img-box.img-product {
     margin: 10px auto;
   }
 
+// reviews
+  .review-box img.img-circle {
+    width:75px;
+  }
+  
+  .review-box {
+    padding:10px 0px;
+    border-bottom:solid 1px #CCC;
+  }
+  
+  .review-thumb {
+    width:100px;
+    display:inline-block;
+  }
+  
+  .review-content {
+    width:500px;
+    max-width:70%;
+    display:inline-block;
+  }
+  
+  .user-icon {
+    width:75px;
+    height:75px;
+    font-size:52px;
+    border-radius:1em;
+    background-color:#525D7D;
+    text-align:center;
+    color:white;
+  }
+div.row.border-top.welcome-review {
+  max-width:500px;
+  margin:0 auto;
+}
 // General Forms
 
 .form-thumb {

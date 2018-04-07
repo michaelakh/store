@@ -1,17 +1,70 @@
-<div class='bg-white'>
+<div class='bg-white container'>
   <h1>
-    Reviews
+    Customer Reviews
   </h1>
-  <% @reviews.each do |review| %>
-  <div class='review-box row'>
-    <div class='col-xs-4'>
-      image
+  <% if @reviews.empty?%>
+    <p>
+      There are no reviews for this product
+    </p>
+  <% else %>
+  <div class='reviews' id='reviews'>
+    <div class='center'>
+      <%= link_to "Write a Review", new_p_review_path(product:@reviews.first.product_id), class:'btn btn-primary' %>
     </div>
     
-    <div class='col-xs-8'>
-      Content
-    </div>
+    <% @reviews.each do |review| %>
+      <div class='review-box row '>
+        <div class='pull-left review-thumb'>
+          <% if review.user != nil && review.user.avatar.exists? %>
+            <%= image_tag review.user.avatar.url(:thumb), class:'img-circle float-left'%>
+          <% else %>
+          <div class='user-icon'>
+            <%= review.user.first_name[0] %>
+          </div>
+          <% end %>
+        </div>
+
+        <div class='pull-left review-content' >
+          <div >
+            <%= review.user.first_name%>
+            <%= review.user.last_name%>
+          </div>
+          <div class="star-rating inline-block" data-score='<%= review.rating%>' >
+          </div>
+          <span class='bold'>
+            <%= review.headline%>
+          </span>
+          <div class='date'>
+            <span>
+              <%= review.created_at.to_date.strftime("%d %b %Y")%>
+            </span>
+          </div>
+          <div >
+            <%= review.content%>
+          </div>
+          <!--
+          <%# if review.likes != nil%>
+          <div>
+            <%= %> people found this helpfull
+          </div>
+          <%# end %>
+          -->
+        </div>
+      </div>
+    <% end %>
   </div>
+  <%= will_paginate @reviews,renderer:BootstrapPagination::Rails,inner_window:1%>
   <% end %>
 </div>
+
+<script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+  
+</script>
  

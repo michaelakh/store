@@ -11,11 +11,12 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @reviews = PReview.all.sort_by(&:created_at)
+    @reviews = PReview.where(product_id:@product).order("created_at DESC").limit(10)
   end
   
-  def preview
-    
+  def reviews
+    product_id = request.url.scan(/\/(\d+?)\//)[0][0].to_i
+    @reviews = PReview.where(product_id:product_id).order("created_at DESC").paginate(page: params[:page], per_page:5)
   end
 
   # GET /products/new

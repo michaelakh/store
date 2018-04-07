@@ -93,28 +93,84 @@
         
      <div class="w-100">
      </div> 
-      
-     
     </div>
         
-  <div class='row border-top '>
-    <h3 class='center'>Social Media</h3>  
-    <div class='col-md-4 col-sm-6 social-box'>
-      <div class='box border'>
-        <h3 class='center social-header'>Facebook Posts</h3>
-      </div>
-    </div>
-    <div class='col-md-4 col-sm-6 social-box'>
-      <div class='box border'>
-        <h3 class='center social-header'>Instagram Photos</h3>
-      </div>
-    </div>
-    <div class='col-md-4 col-sm-12 social-box'>
-      <div class='box border'>
-        <h3 class='center social-header'>Recent Tweets</h3>
-      </div>
-    </div>
-  </div>
+    <div class='row border-top reviews welcome-review'>
+      <h1 class='center'>
+        Customer Reviews
+      </h1>
+      <% @reviews.each do |review| %>
+        <% if review.rating > 3.5 %>
+          <div class='review-box row '>
+            <div class='pull-left review-thumb'>
+              <% if review.user != nil && review.user.avatar.exists? %>
+                <%= image_tag review.user.avatar.url(:thumb), class:'img-circle float-left'%>
+              <% else %>
+              <div class='user-icon'>
+                <%= review.user.first_name[0] %>
+              </div>
+              <% end %>
+            </div>
 
+            <div class='pull-left review-content' >
+              <div >
+                <%= review.user.first_name%>
+                <%= review.user.last_name%>
+              </div>
+              <div class="star-rating inline-block" data-score='<%= review.rating%>' >
+              </div>
+              <span class='bold'>
+                <%= review.headline%>
+              </span>
+              <div class='date'>
+                <span>
+                  <%= review.created_at.to_date.strftime("%d %b %Y")%>
+                </span>
+              </div>
+              <div >
+                <%= review.content%>
+              </div>
+              <!--
+              <%# if review.likes != nil%>
+              <div>
+                <%= %> people found this helpfull
+              </div>
+              <%# end %>
+              -->
+            </div>
+          </div>
+        <% else %>
+        <% end %>
+      <% end %>
+    </div>
+    <!--      
+    <div class='row border-top '>
+      <h3 class='center'>Social Media</h3>  
+      <div class='col-md-4 col-sm-6 social-box'>
+        <div class='box border'>
+          <h3 class='center social-header'>Facebook Posts</h3>
+        </div>
+      </div>
+      <div class='col-md-4 col-sm-6 social-box'>
+        <div class='box border'>
+          <h3 class='center social-header'>Instagram Photos</h3>
+        </div>
+      </div>
+      <div class='col-md-4 col-sm-12 social-box'>
+        <div class='box border'>
+          <h3 class='center social-header'>Recent Tweets</h3>
+        </div>
+      </div>
+    </div>
+    -->
   </div>
 </section>
+<script>
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function() {
+          return $(this).attr('data-score');
+  }
+});
+</script>

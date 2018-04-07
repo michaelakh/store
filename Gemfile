@@ -7,6 +7,8 @@ end
 
 #easy pagination
 gem 'kaminari'
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap'
 #auto complete with nested forms
 gem 'rails-jquery-autocomplete'
 # bootstrap gems

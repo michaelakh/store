@@ -1,12 +1,5 @@
 <style>
-  .review-box img.img-circle {
-    width:75px;
-  }
-  
-  .review-box {
-    padding:10px 0px;
-    border-bottom:solid 1px #CCC;
-  }
+
 </style>
 <div class='bg-white'>
   <div class='row'>
@@ -256,15 +249,19 @@
   </div>
 -->
   <hr>
-  <div class='reviews'>
+  <div class='reviews' id='reviews'>
     <h1>
       Customer reviews
     </h1>
+    <div class='center'>
+      <%= link_to "Write a Review", new_p_review_path(product:@product.id), class:'btn btn-primary' %>
+    </div>
+    <%= link_to 'See all reviews', product_reviews_path(@product) %>
     <% @reviews.each do |review| %>
-      <div class='review-box row'>
-        <div class='col-xs-3 right'>
+      <div class='review-box row '>
+        <div class='pull-left review-thumb'>
           <% if review.user != nil && review.user.avatar.exists? %>
-            <%= image_tag review.user.avatar.url(:thumb), class:'img-circle'%>
+            <%= image_tag review.user.avatar.url(:thumb), class:'img-circle float-left'%>
           <% else %>
           <div class='user-icon'>
             <%= review.user.first_name[0] %>
@@ -272,7 +269,7 @@
           <% end %>
         </div>
 
-        <div class='col-xs-9' >
+        <div class='pull-left review-content' >
           <div >
             <%= review.user.first_name%>
             <%= review.user.last_name%>
@@ -301,9 +298,10 @@
       </div>
     <% end %>
   </div>
-  <%= link_to 'Edit', edit_product_path(@product) %> |
-  <%= link_to 'Back', products_path %>
-
+  <% if @reviews.empty?%>
+  <% else %>
+  <%= link_to 'See all reviews', product_reviews_path(@product) %>
+  <% end %>
 </div>
 
 <script>
